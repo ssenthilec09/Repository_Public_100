@@ -13,5 +13,5 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: dotnet build Repository_Public_100\blob\main\AspNetCoreEmptyWebApp\AspNetCoreEmptyWebApp.csproj --configuration $(buildConfiguration)
+- script: dotnet build https://github.com/ssenthilec09/Repository_Public_100/blob/main/AspNetCoreEmptyWebApp/AspNetCoreEmptyWebApp.csproj --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
