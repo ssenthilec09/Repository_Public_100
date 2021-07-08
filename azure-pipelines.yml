@@ -15,5 +15,5 @@ variables:
 steps:
 - script: dotnet build AspNetCoreEmptyWebApp/AspNetCoreEmptyWebApp.sln --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
-- script: dotnet publish ".\src\MyProject.sln" --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
+- script: dotnet publish AspNetCoreEmptyWebApp/AspNetCoreEmptyWebApp.sln --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
   displayName: 'dotnet publish $(buildConfiguration)'
