@@ -17,3 +17,4 @@ steps:
   displayName: 'dotnet build $(buildConfiguration)'
 - script: dotnet publish AspNetCoreEmptyWebApp/AspNetCoreEmptyWebApp.sln --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
   displayName: 'dotnet publish $(buildConfiguration)'
+- task: PublishBuildArtifacts@1
