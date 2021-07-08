@@ -18,3 +18,23 @@ C:\Users\a97413335\Desktop\DevOps\Git\Repository_Public_100\AspNetCoreEmptyWebAp
 C:\Users\a97413335\Desktop\DevOps\Git\Repository_Public_100\AspNetCoreEmptyWebApp\obj\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.dll
 C:\Users\a97413335\Desktop\DevOps\Git\Repository_Public_100\AspNetCoreEmptyWebApp\obj\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.pdb
 C:\Users\a97413335\Desktop\DevOps\Git\Repository_Public_100\AspNetCoreEmptyWebApp\obj\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.genruntimeconfig.cache
+F:\New folder\AspNetCoreEmptyWebApp\bin\Debug\netcoreapp3.1\appsettings.Development.json
+F:\New folder\AspNetCoreEmptyWebApp\bin\Debug\netcoreapp3.1\appsettings.json
+F:\New folder\AspNetCoreEmptyWebApp\bin\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.exe
+F:\New folder\AspNetCoreEmptyWebApp\bin\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.deps.json
+F:\New folder\AspNetCoreEmptyWebApp\bin\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.runtimeconfig.json
+F:\New folder\AspNetCoreEmptyWebApp\bin\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.runtimeconfig.dev.json
+F:\New folder\AspNetCoreEmptyWebApp\bin\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.dll
+F:\New folder\AspNetCoreEmptyWebApp\bin\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.pdb
+F:\New folder\AspNetCoreEmptyWebApp\obj\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.csproj.AssemblyReference.cache
+F:\New folder\AspNetCoreEmptyWebApp\obj\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.AssemblyInfoInputs.cache
+F:\New folder\AspNetCoreEmptyWebApp\obj\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.AssemblyInfo.cs
+F:\New folder\AspNetCoreEmptyWebApp\obj\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.csproj.CoreCompileInputs.cache
+F:\New folder\AspNetCoreEmptyWebApp\obj\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.MvcApplicationPartsAssemblyInfo.cache
+F:\New folder\AspNetCoreEmptyWebApp\obj\Debug\netcoreapp3.1\staticwebassets\AspNetCoreEmptyWebApp.StaticWebAssets.Manifest.cache
+F:\New folder\AspNetCoreEmptyWebApp\obj\Debug\netcoreapp3.1\staticwebassets\AspNetCoreEmptyWebApp.StaticWebAssets.xml
+F:\New folder\AspNetCoreEmptyWebApp\obj\Debug\netcoreapp3.1\scopedcss\bundle\AspNetCoreEmptyWebApp.styles.css
+F:\New folder\AspNetCoreEmptyWebApp\obj\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.RazorTargetAssemblyInfo.cache
+F:\New folder\AspNetCoreEmptyWebApp\obj\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.dll
+F:\New folder\AspNetCoreEmptyWebApp\obj\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.pdb
+F:\New folder\AspNetCoreEmptyWebApp\obj\Debug\netcoreapp3.1\AspNetCoreEmptyWebApp.genruntimeconfig.cache
