@@ -17,3 +17,4 @@ F:\New folder\AspNetCoreEmptyWebApp\obj\Release\netcoreapp3.1\AspNetCoreEmptyWeb
 F:\New folder\AspNetCoreEmptyWebApp\obj\Release\netcoreapp3.1\AspNetCoreEmptyWebApp.dll
 F:\New folder\AspNetCoreEmptyWebApp\obj\Release\netcoreapp3.1\AspNetCoreEmptyWebApp.pdb
 F:\New folder\AspNetCoreEmptyWebApp\obj\Release\netcoreapp3.1\AspNetCoreEmptyWebApp.genruntimeconfig.cache
+F:\New folder\AspNetCoreEmptyWebApp\obj\Release\netcoreapp3.1\AspNetCoreEmptyWebApp.csproj.AssemblyReference.cache
