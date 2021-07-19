@@ -20,9 +20,3 @@ steps:
   displayName: 'dotnet publish $(buildConfiguration)'
 
 - task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'Arm'
-    publishLocation: 'Container'
-
-- task: PublishBuildArtifacts@1
