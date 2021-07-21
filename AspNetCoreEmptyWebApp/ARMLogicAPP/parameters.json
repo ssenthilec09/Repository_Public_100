@@ -6,7 +6,7 @@
             "value": "2016-10-01"
         },
         "workflowName": {
-            "value": "DevOPsLogicAppTesting"
+            "value": "#{workflowName}#"
         },
         "workflowLocation": {
             "value": "northeurope"
