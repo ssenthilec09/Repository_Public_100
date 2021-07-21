@@ -6,7 +6,7 @@
             "value": "c961670c-d1e9-44eb-8cb0-24073f7ba50d"
         },
         "name": {
-            "value": "#{DevOpsFindITTesting}#"
+            "value": "#{name}#"
         },
         "location": {
             "value": "West Europe"
