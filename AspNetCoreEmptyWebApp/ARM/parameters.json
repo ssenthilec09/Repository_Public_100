@@ -9,13 +9,13 @@
             "value": "#{name}#"
         },
         "location": {
-            "value": "West Europe"
+            "value": "#{location}#"
         },
         "hostingPlanName": {
-            "value": "QnA1"
+            "value": "#{hostingPlanName}#"
         },
         "serverFarmResourceGroup": {
-            "value": "QnA1"
+            "value": "#{serverFarmResourceGroup}#"
         },
         "alwaysOn": {
             "value": true
@@ -27,7 +27,7 @@
             "value": "OFF"
         },
         "netFrameworkVersion": {
-            "value": "v6.0"
+            "value": "#{netFrameworkVersion}#"
         }
     }
 }
