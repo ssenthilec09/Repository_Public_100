@@ -1,446 +1,111 @@
 {
     "properties": {
         "provisioningState": "Succeeded",
-        "createdTime": "2021-06-10T14:46:50.6138371Z",
-        "changedTime": "2021-06-30T02:48:48.5412565Z",
+        "createdTime": "2021-07-23T08:18:34.4466683Z",
+        "changedTime": "2021-07-23T08:19:56.4589101Z",
         "state": "Enabled",
-        "version": "08585765855569440524",
-        "accessEndpoint": "https://prod-101.westeurope.logic.azure.com:443/workflows/f6c3c2b6755e46c6b53defa2c03a3da7",
+        "version": "08585745784890375214",
+        "accessEndpoint": "https://prod-52.northeurope.logic.azure.com:443/workflows/97d481db757946f1a7a5b0b02a6e2a16",
         "definition": {
             "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
             "contentVersion": "1.0.0.0",
-            "parameters": {
-                "$connections": {
-                    "defaultValue": {},
-                    "type": "Object"
-                }
-            },
+            "parameters": {},
             "triggers": {
-                "When_an_item_is_created": {
+                "Recurrence": {
                     "recurrence": {
-                        "frequency": "Second",
+                        "frequency": "Day",
                         "interval": 3
                     },
-                    "splitOn": "@triggerBody()?['value']",
-                    "type": "ApiConnection",
-                    "inputs": {
-                        "host": {
-                            "connection": {
-                                "name": "@parameters('$connections')['sharepointonline']['connectionId']"
-                            }
-                        },
-                        "method": "get",
-                        "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://heiway.sharepoint.com/sites/HEA-col-HeiwayPOC'))}/tables/@{encodeURIComponent(encodeURIComponent('6632a2bc-b842-42ab-822e-970c0d0881d2'))}/onnewitems"
-                    }
+                    "type": "Recurrence"
                 }
             },
             "actions": {
-                "Condition": {
-                    "actions": {
-                        "Condition_3": {
-                            "actions": {
-                                "Update_item": {
-                                    "runAfter": {},
-                                    "type": "ApiConnection",
-                                    "inputs": {
-                                        "body": {
-                                            "Comments": "Duplicate Group Name found. Please choose right group id from below.\n@{body('Parse_JSON')?['value']}",
-                                            "GroupName": "@triggerBody()?['GroupName']"
-                                        },
-                                        "host": {
-                                            "connection": {
-                                                "name": "@parameters('$connections')['sharepointonline']['connectionId']"
-                                            }
-                                        },
-                                        "method": "patch",
-                                        "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://heiway.sharepoint.com/sites/HEA-col-HeiwayPOC'))}/tables/@{encodeURIComponent(encodeURIComponent('6632a2bc-b842-42ab-822e-970c0d0881d2'))}/items/@{encodeURIComponent(triggerBody()?['ID'])}"
-                                    }
-                                }
-                            },
-                            "runAfter": {},
-                            "else": {
-                                "actions": {
-                                    "For_each": {
-                                        "foreach": "@body('Parse_JSON')?['value']",
-                                        "actions": {
-                                            "Condition_2": {
-                                                "actions": {
-                                                    "AddUserToTeams_2": {
-                                                        "runAfter": {},
-                                                        "type": "Function",
-                                                        "inputs": {
-                                                            "body": {
-                                                                "groupid": "@{items('For_each')?['id']}",
-                                                                "role": "@{triggerBody()?['Role']?['Value']}",
-                                                                "username": "@{triggerBody()?['UserMailID']?['Email']}"
-                                                            },
-                                                            "function": {
-                                                                "id": "/subscriptions/d84cc03f-38bb-41db-85ec-976fba7dc462/resourceGroups/HEI-EUD-PowerBI-P-AZWE-RG-01/providers/Microsoft.Web/sites/POCMSTEAMS/functions/AddUserToTeams"
-                                                            }
-                                                        }
-                                                    },
-                                                    "Create_item_2": {
-                                                        "runAfter": {
-                                                            "AddUserToTeams_2": [
-                                                                "Succeeded"
-                                                            ]
-                                                        },
-                                                        "type": "ApiConnection",
-                                                        "inputs": {
-                                                            "body": {
-                                                                "GroupId": "@items('For_each')?['id']",
-                                                                "GroupName": "@triggerBody()?['GroupName']",
-                                                                "ItemID": "@triggerBody()?['ID']",
-                                                                "Role": {
-                                                                    "Value": "@{triggerBody()?['Role']?['Value']}"
-                                                                },
-                                                                "Status": "Active",
-                                                                "UserMailID": {
-                                                                    "Claims": "@{triggerBody()?['UserMailID']?['Claims']}"
-                                                                }
-                                                            },
-                                                            "host": {
-                                                                "connection": {
-                                                                    "name": "@parameters('$connections')['sharepointonline']['connectionId']"
-                                                                }
-                                                            },
-                                                            "method": "post",
-                                                            "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://heiway.sharepoint.com/sites/HEA-col-HeiwayPOC'))}/tables/@{encodeURIComponent(encodeURIComponent('ee435feb-11ff-407f-94db-364506bc8132'))}/items"
-                                                        }
-                                                    },
-                                                    "Update_item_3": {
-                                                        "runAfter": {
-                                                            "Create_item_2": [
-                                                                "Succeeded"
-                                                            ]
-                                                        },
-                                                        "type": "ApiConnection",
-                                                        "inputs": {
-                                                            "body": {
-                                                                "Comments": "User has been promoted successfully",
-                                                                "GroupName": "@triggerBody()?['GroupName']"
-                                                            },
-                                                            "host": {
-                                                                "connection": {
-                                                                    "name": "@parameters('$connections')['sharepointonline']['connectionId']"
-                                                                }
-                                                            },
-                                                            "method": "patch",
-                                                            "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://heiway.sharepoint.com/sites/HEA-col-HeiwayPOC'))}/tables/@{encodeURIComponent(encodeURIComponent('6632a2bc-b842-42ab-822e-970c0d0881d2'))}/items/@{encodeURIComponent(triggerBody()?['ID'])}"
-                                                        }
-                                                    }
-                                                },
-                                                "runAfter": {},
-                                                "expression": {
-                                                    "and": [
-                                                        {
-                                                            "equals": [
-                                                                "@string(variables('GroupID'))",
-                                                                "@string(items('For_each')?['id'])"
-                                                            ]
-                                                        }
-                                                    ]
-                                                },
-                                                "type": "If"
-                                            }
-                                        },
-                                        "runAfter": {},
-                                        "type": "Foreach"
-                                    }
-                                }
-                            },
-                            "expression": {
-                                "and": [
-                                    {
-                                        "less": [
-                                            "@length(variables('GroupID'))",
-                                            1
-                                        ]
-                                    }
-                                ]
-                            },
-                            "type": "If"
-                        }
-                    },
-                    "runAfter": {
-                        "Parse_JSON": [
-                            "Succeeded"
-                        ]
-                    },
-                    "else": {
-                        "actions": {
-                            "For_each_2": {
-                                "foreach": "@body('Parse_JSON')?['value']",
-                                "actions": {
-                                    "AddUserToTeams": {
-                                        "runAfter": {},
-                                        "type": "Function",
-                                        "inputs": {
-                                            "body": {
-                                                "groupid": "@{items('For_each_2')?['id']}",
-                                                "role": "@{triggerBody()?['Role']?['Value']}",
-                                                "username": "@{triggerBody()?['UserMailID']?['Email']}"
-                                            },
-                                            "function": {
-                                                "id": "/subscriptions/d84cc03f-38bb-41db-85ec-976fba7dc462/resourceGroups/HEI-EUD-PowerBI-P-AZWE-RG-01/providers/Microsoft.Web/sites/POCMSTEAMS/functions/AddUserToTeams"
-                                            }
-                                        }
-                                    },
-                                    "Create_item_3": {
-                                        "runAfter": {
-                                            "AddUserToTeams": [
-                                                "Succeeded"
-                                            ]
-                                        },
-                                        "type": "ApiConnection",
-                                        "inputs": {
-                                            "body": {
-                                                "GroupId": "@{items('For_each_2')?['id']}",
-                                                "GroupName": "@triggerBody()?['GroupName']",
-                                                "ItemID": "@triggerBody()?['ID']",
-                                                "Role": {
-                                                    "Value": "Owner"
-                                                },
-                                                "Status": "Active",
-                                                "UserMailID": {
-                                                    "Claims": "@{triggerBody()?['UserMailID']?['Claims']}"
-                                                }
-                                            },
-                                            "host": {
-                                                "connection": {
-                                                    "name": "@parameters('$connections')['sharepointonline']['connectionId']"
-                                                }
-                                            },
-                                            "method": "post",
-                                            "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://heiway.sharepoint.com/sites/HEA-col-HeiwayPOC'))}/tables/@{encodeURIComponent(encodeURIComponent('ee435feb-11ff-407f-94db-364506bc8132'))}/items"
-                                        }
-                                    },
-                                    "Update_item_2": {
-                                        "runAfter": {
-                                            "Create_item_3": [
-                                                "Succeeded"
-                                            ]
-                                        },
-                                        "type": "ApiConnection",
-                                        "inputs": {
-                                            "body": {
-                                                "Comments": "User has been promoted successfully",
-                                                "GroupName": "@triggerBody()?['GroupName']"
-                                            },
-                                            "host": {
-                                                "connection": {
-                                                    "name": "@parameters('$connections')['sharepointonline']['connectionId']"
-                                                }
-                                            },
-                                            "method": "patch",
-                                            "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://heiway.sharepoint.com/sites/HEA-col-HeiwayPOC'))}/tables/@{encodeURIComponent(encodeURIComponent('6632a2bc-b842-42ab-822e-970c0d0881d2'))}/items/@{encodeURIComponent(triggerBody()?['ID'])}"
-                                        }
-                                    }
-                                },
-                                "runAfter": {},
-                                "type": "Foreach"
-                            }
-                        }
-                    },
-                    "expression": {
-                        "and": [
-                            {
-                                "greater": [
-                                    "@length(body('Parse_JSON')?['value'])",
-                                    1
-                                ]
-                            }
-                        ]
-                    },
-                    "type": "If"
-                },
-                "HTTP": {
-                    "runAfter": {
-                        "Initialize_variable": [
-                            "Succeeded"
-                        ]
-                    },
-                    "type": "Http",
-                    "inputs": {
-                        "authentication": {
-                            "audience": "https://graph.microsoft.com",
-                            "clientId": "5cfd281d-b998-48ad-9378-3b1d8d097ba1",
-                            "secret": "3Ra.g2-_U4_Hh.3iPeiW7g7rW5--t_6Vc9",
-                            "tenant": "heiway.net",
-                            "type": "ActiveDirectoryOAuth"
-                        },
-                        "method": "GET",
-                        "uri": "https://graph.microsoft.com/v1.0/groups?$filter=displayName%20eq%20'@{variables('GroupName')}'&$select=id"
-                    }
-                },
                 "Initialize_variable": {
-                    "runAfter": {
-                        "Initialize_variable_2": [
-                            "Succeeded"
-                        ]
-                    },
-                    "type": "InitializeVariable",
-                    "inputs": {
-                        "variables": [
-                            {
-                                "name": "GroupName",
-                                "type": "string",
-                                "value": "@{encodeUriComponent(triggerBody()?['GroupName'])}"
-                            }
-                        ]
-                    }
-                },
-                "Initialize_variable_2": {
                     "runAfter": {},
                     "type": "InitializeVariable",
                     "inputs": {
                         "variables": [
                             {
-                                "name": "GroupID",
-                                "type": "string",
-                                "value": "@triggerBody()?['GroupID']"
+                                "name": "TestBool",
+                                "type": "boolean"
                             }
                         ]
-                    }
-                },
-                "Parse_JSON": {
-                    "runAfter": {
-                        "HTTP": [
-                            "Succeeded"
-                        ]
-                    },
-                    "type": "ParseJson",
-                    "inputs": {
-                        "content": "@body('HTTP')",
-                        "schema": {
-                            "properties": {
-                                "@@odata.context": {
-                                    "type": "string"
-                                },
-                                "value": {
-                                    "items": {
-                                        "properties": {
-                                            "id": {
-                                                "type": "string"
-                                            }
-                                        },
-                                        "required": [
-                                            "id"
-                                        ],
-                                        "type": "object"
-                                    },
-                                    "type": "array"
-                                }
-                            },
-                            "type": "object"
-                        }
                     }
                 }
             },
             "outputs": {}
         },
-        "parameters": {
-            "$connections": {
-                "value": {
-                    "sharepointonline": {
-                        "connectionId": "/subscriptions/d84cc03f-38bb-41db-85ec-976fba7dc462/resourceGroups/HEI-EUD-PowerBI-P-AZWE-RG-01/providers/Microsoft.Web/connections/sharepointonline",
-                        "connectionName": "sharepointonline",
-                        "id": "/subscriptions/d84cc03f-38bb-41db-85ec-976fba7dc462/providers/Microsoft.Web/locations/westeurope/managedApis/sharepointonline"
-                    }
-                }
-            }
-        },
+        "parameters": {},
         "endpointsConfiguration": {
             "workflow": {
                 "outgoingIpAddresses": [
                     {
-                        "address": "40.68.222.65"
+                        "address": "40.113.12.95"
                     },
                     {
-                        "address": "40.68.209.23"
+                        "address": "52.178.165.215"
                     },
                     {
-                        "address": "13.95.147.65"
+                        "address": "52.178.166.21"
                     },
                     {
-                        "address": "23.97.218.130"
+                        "address": "40.112.92.104"
                     },
                     {
-                        "address": "51.144.182.201"
+                        "address": "40.112.95.216"
                     },
                     {
-                        "address": "23.97.211.179"
+                        "address": "40.113.4.18"
                     },
                     {
-                        "address": "104.45.9.52"
+                        "address": "40.113.3.202"
                     },
                     {
-                        "address": "23.97.210.126"
-                    },
-                    {
-                        "address": "13.69.71.160"
-                    },
-                    {
-                        "address": "13.69.71.161"
-                    },
-                    {
-                        "address": "13.69.71.162"
-                    },
-                    {
-                        "address": "13.69.71.163"
-                    },
-                    {
-                        "address": "13.69.71.164"
-                    },
-                    {
-                        "address": "13.69.71.165"
-                    },
-                    {
-                        "address": "13.69.71.166"
-                    },
-                    {
-                        "address": "13.69.71.167"
+                        "address": "40.113.1.181"
                     }
                 ],
                 "accessEndpointIpAddresses": [
                     {
-                        "address": "13.95.155.53"
+                        "address": "13.79.173.49"
                     },
                     {
-                        "address": "52.174.54.218"
+                        "address": "52.169.218.253"
                     },
                     {
-                        "address": "52.174.49.6"
+                        "address": "52.169.220.174"
                     },
                     {
-                        "address": "52.174.49.6"
+                        "address": "40.112.90.39"
                     }
                 ]
             },
             "connector": {
                 "outgoingIpAddresses": [
                     {
-                        "address": "13.69.64.208/28"
+                        "address": "52.169.28.181"
                     },
                     {
-                        "address": "40.115.50.13"
+                        "address": "52.178.150.68"
                     },
                     {
-                        "address": "52.174.88.118"
+                        "address": "94.245.91.93"
                     },
                     {
-                        "address": "40.91.208.65"
+                        "address": "40.115.108.29"
                     },
                     {
-                        "address": "52.166.78.89"
+                        "address": "13.69.227.208/28"
+                    },
+                    {
+                        "address": "13.69.231.192/27"
                     }
                 ]
             }
         }
     },
-    "id": "/subscriptions/d84cc03f-38bb-41db-85ec-976fba7dc462/resourceGroups/HEI-EUD-PowerBI-P-AZWE-RG-01/providers/Microsoft.Logic/workflows/MSTeam-PromoteOwner-Add",
+    "id": "/subscriptions/c961670c-d1e9-44eb-8cb0-24073f7ba50d/resourceGroups/HEICollabTestRG01/providers/Microsoft.Logic/workflows/DevOps-MSTeam-PromoteOwner-Add",
     "name": "DevOps-MSTeam-PromoteOwner-Add",
     "type": "Microsoft.Logic/workflows",
-    "location": "westeurope",
+    "location": "northeurope",
     "tags": {}
 }
