@@ -1,0 +1,111 @@
+{
+    "properties": {
+        "provisioningState": "Succeeded",
+        "createdTime": "2021-07-23T08:18:34.4466683Z",
+        "changedTime": "2021-07-23T08:19:56.4589101Z",
+        "state": "Enabled",
+        "version": "08585745784890375214",
+        "accessEndpoint": "https://prod-52.northeurope.logic.azure.com:443/workflows/97d481db757946f1a7a5b0b02a6e2a16",
+        "definition": {
+            "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+            "contentVersion": "1.0.0.0",
+            "parameters": {},
+            "triggers": {
+                "Recurrence": {
+                    "recurrence": {
+                        "frequency": "Day",
+                        "interval": 3
+                    },
+                    "type": "Recurrence"
+                }
+            },
+            "actions": {
+                "Initialize_variable": {
+                    "runAfter": {},
+                    "type": "InitializeVariable",
+                    "inputs": {
+                        "variables": [
+                            {
+                                "name": "TestBool",
+                                "type": "boolean"
+                            }
+                        ]
+                    }
+                }
+            },
+            "outputs": {}
+        },
+        "parameters": {},
+        "endpointsConfiguration": {
+            "workflow": {
+                "outgoingIpAddresses": [
+                    {
+                        "address": "40.113.12.95"
+                    },
+                    {
+                        "address": "52.178.165.215"
+                    },
+                    {
+                        "address": "52.178.166.21"
+                    },
+                    {
+                        "address": "40.112.92.104"
+                    },
+                    {
+                        "address": "40.112.95.216"
+                    },
+                    {
+                        "address": "40.113.4.18"
+                    },
+                    {
+                        "address": "40.113.3.202"
+                    },
+                    {
+                        "address": "40.113.1.181"
+                    }
+                ],
+                "accessEndpointIpAddresses": [
+                    {
+                        "address": "13.79.173.49"
+                    },
+                    {
+                        "address": "52.169.218.253"
+                    },
+                    {
+                        "address": "52.169.220.174"
+                    },
+                    {
+                        "address": "40.112.90.39"
+                    }
+                ]
+            },
+            "connector": {
+                "outgoingIpAddresses": [
+                    {
+                        "address": "52.169.28.181"
+                    },
+                    {
+                        "address": "52.178.150.68"
+                    },
+                    {
+                        "address": "94.245.91.93"
+                    },
+                    {
+                        "address": "40.115.108.29"
+                    },
+                    {
+                        "address": "13.69.227.208/28"
+                    },
+                    {
+                        "address": "13.69.231.192/27"
+                    }
+                ]
+            }
+        }
+    },
+    "id": "/subscriptions/c961670c-d1e9-44eb-8cb0-24073f7ba50d/resourceGroups/HEICollabTestRG01/providers/Microsoft.Logic/workflows/DevOps-MSTeam-PromoteOwner-Add",
+    "name": "DevOps-MSTeam-PromoteOwner-Add",
+    "type": "Microsoft.Logic/workflows",
+    "location": "northeurope",
+    "tags": {}
+}

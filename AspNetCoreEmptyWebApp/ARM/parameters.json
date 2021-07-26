@@ -1,0 +1,33 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "subscriptionId": {
+            "value": "c961670c-d1e9-44eb-8cb0-24073f7ba50d"
+        },
+        "name": {
+            "value": "#{name}#"
+        },
+        "location": {
+            "value": "#{location}#"
+        },
+        "hostingPlanName": {
+            "value": "#{hostingPlanName}#"
+        },
+        "serverFarmResourceGroup": {
+            "value": "#{serverFarmResourceGroup}#"
+        },
+        "alwaysOn": {
+            "value": true
+        },
+        "currentStack": {
+            "value": "dotnet"
+        },
+        "phpVersion": {
+            "value": "OFF"
+        },
+        "netFrameworkVersion": {
+            "value": "#{netFrameworkVersion}#"
+        }
+    }
+}
