@@ -4,4 +4,6 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties armlogicapp_4template_1json__JsonSchema="https://static.codemagic.io/codemagic-schema.json" /></VisualStudio></ProjectExtensions>
+
 </Project>

@@ -3,13 +3,52 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "logicAppName": {
-      "value": "DevOpsFindITNew2"
+      "value": "DevOpsTesting123-FindIT-OPCOMember-CU"
     },
-    "RecurrenceFrequency": {
-      "value": "Day"
+    "FindIT-Member-Create-FunctionApp": {
+      "value": "HEIGISMOAL"
     },
-    "RecurrenceInterval": {
+    "FindIT-Member-Create-FunctionName": {
+      "value": "FindIT-Member-Create"
+    },
+    "FindIT-Member-Update-FunctionApp": {
+      "value": "HEIGISMOAL"
+    },
+    "FindIT-Member-Update-FunctionName": {
+      "value": "FindIT-Member-Update"
+    },
+    "Get_blob_content_2-path": {
+      "value": "%2fhei-eud-test-data%2fTermStore_Products.json"
+    },
+    "__apostrophe": {
+      "value": "'"
+    },
+    "When_an_item_is_created_or_modified_in_FindITFrequency": {
+      "value": "Minute"
+    },
+    "When_an_item_is_created_or_modified_in_FindITInterval": {
       "value": 1
+    },
+    "paramNumber of existing OPCO Members": {
+      "value": 0
+    },
+    "azureblob-1_name": {
+      "value": "azureblob-1"
+    },
+    "azureblob-1_displayName": {
+      "value": "heieudweustrprod01"
+    },
+    "azureblob-1_accountName": {
+      "value": "heieudweustrprod01"
+    },
+    "azureblob-1_resourceGroupName": {
+      "value": "RG-O365AdminResources"
+    },
+    "sharepointonline_name": {
+      "value": "sharepointonline"
+    },
+    "sharepointonline_displayName": {
+      "value": "ADMSHANMS02@heiway.net"
     }
   }
 }

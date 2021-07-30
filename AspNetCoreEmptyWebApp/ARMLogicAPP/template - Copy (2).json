@@ -1,0 +1,181 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "logicAppName": {
+      "type": "string",
+      "defaultValue": "DevOpsFindITNew1",
+      "metadata": {
+        "description": "From Visual Studio Name of the Logic App."
+      }
+    },
+    "logicAppLocation": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "allowedValues": [
+        "[resourceGroup().location]",
+        "asia",
+        "asiapacific",
+        "australia",
+        "australiacentral",
+        "australiacentral2",
+        "australiaeast",
+        "australiasoutheast",
+        "brazil",
+        "brazilsouth",
+        "brazilsoutheast",
+        "canada",
+        "canadacentral",
+        "canadaeast",
+        "centralindia",
+        "centralus",
+        "centraluseuap",
+        "centralusstage",
+        "chinaeast",
+        "chinanorth",
+        "eastasia",
+        "eastasiastage",
+        "eastus",
+        "eastus2",
+        "eastus2euap",
+        "eastus2stage",
+        "eastusstage",
+        "europe",
+        "francecentral",
+        "francesouth",
+        "germanycentral",
+        "germanynorth",
+        "germanynortheast",
+        "germanywestcentral",
+        "global",
+        "india",
+        "japan",
+        "japaneast",
+        "japanwest",
+        "jioindiawest",
+        "koreacentral",
+        "koreasouth",
+        "northcentralus",
+        "northcentralusstage",
+        "northeurope",
+        "norwayeast",
+        "norwaywest",
+        "southafricanorth",
+        "southafricawest",
+        "southcentralus",
+        "southcentralusstage",
+        "southeastasia",
+        "southeastasiastage",
+        "southindia",
+        "switzerland",
+        "switzerlandnorth",
+        "switzerlandwest",
+        "uaecentral",
+        "uaenorth",
+        "uk",
+        "uksouth",
+        "ukwest",
+        "unitedstates",
+        "usdodeast",
+        "usdodwest",
+        "usgovarizona",
+        "usgoviowa",
+        "usgovtexas",
+        "usgovvirginia",
+        "usseceast",
+        "ussecwest",
+        "west",
+        "westcentralus",
+        "westeurope",
+        "westindia",
+        "westus",
+        "westus2",
+        "westus2stage",
+        "westus3",
+        "westusstage"
+      ],
+      "metadata": {
+        "description": "Location of the Logic App."
+      }
+    },
+    "RecurrenceFrequency": {
+      "type": "string",
+      "defaultValue": "Day"
+    },
+    "RecurrenceInterval": {
+      "type": "int",
+      "defaultValue": 1
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Logic/workflows",
+      "apiVersion": "2016-06-01",
+      "name": "[parameters('logicAppName')]",
+      "location": "[parameters('logicAppLocation')]",
+      "dependsOn": [],
+      "properties": {
+        "definition": {
+          "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {},
+          "triggers": {
+            "Recurrence": {
+              "recurrence": {
+                "frequency": "[parameters('RecurrenceFrequency')]",
+                "interval": "[parameters('RecurrenceInterval')]"
+              },
+              "type": "Recurrence"
+            }
+          },
+          "actions": {
+            "Condition": {
+              "actions": {
+                "Set_variable": {
+                  "runAfter": {},
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Name",
+                    "value": "Senthil 1"
+                  }
+                }
+              },
+              "runAfter": {
+                "Initialize_variable": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "and": [
+                  {
+                    "equals": [
+                      1,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "type": "If"
+            },
+            "Initialize_variable": {
+              "runAfter": {},
+              "type": "InitializeVariable",
+              "inputs": {
+                "variables": [
+                  {
+                    "name": "Name",
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          },
+          "outputs": {}
+        },
+        "parameters": {}
+      }
+    }
+  ],
+  "outputs": {}
+}

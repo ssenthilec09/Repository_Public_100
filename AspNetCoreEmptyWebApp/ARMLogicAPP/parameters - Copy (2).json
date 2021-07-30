@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "logicAppName": {
+      "value": "DevOpsFindITNew2"
+    },
+    "RecurrenceFrequency": {
+      "value": "Day"
+    },
+    "RecurrenceInterval": {
+      "value": 1
+    }
+  }
+}
