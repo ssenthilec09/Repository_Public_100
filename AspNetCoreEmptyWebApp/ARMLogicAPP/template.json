@@ -159,7 +159,7 @@
     },
     "azureblob-1_resourceGroupName": {
       "type": "string",
-      "defaultValue": "RG-O365AdminResources"
+      "defaultValue": "HEICollabTestRG01"
     },
     "sharepointonline_name": {
       "type": "string",

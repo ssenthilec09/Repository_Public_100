@@ -42,13 +42,13 @@
       "value": "heieudweustrprod01"
     },
     "azureblob-1_resourceGroupName": {
-      "value": "RG-O365AdminResources"
+      "value": "HEICollabTestRG01"
     },
     "sharepointonline_name": {
       "value": "sharepointonline"
     },
     "sharepointonline_displayName": {
-      "value": "ADMSHANMS02@heiway.net"
+      "value": "SHANMS02@heiway.net"
     }
   }
 }
