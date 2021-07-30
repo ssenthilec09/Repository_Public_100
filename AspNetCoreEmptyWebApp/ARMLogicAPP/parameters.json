@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "logicAppName": {
-      "value": "DevOpsFindIT New 2"
+      "value": "DevOpsFindITNew2"
     },
     "RecurrenceFrequency": {
       "value": "Day"

@@ -4,7 +4,7 @@
   "parameters": {
     "logicAppName": {
       "type": "string",
-      "defaultValue": "DevOpsFindIT New 1",
+      "defaultValue": "DevOpsFindITNew1",
       "metadata": {
         "description": "From Visual Studio Name of the Logic App."
       }
