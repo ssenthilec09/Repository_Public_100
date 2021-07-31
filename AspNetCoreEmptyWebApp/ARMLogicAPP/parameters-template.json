@@ -5,18 +5,6 @@
     "logicAppName": {
       "value": "FindIT-OPCOMember-CU"
     },
-    "FindIT-Member-Create-FunctionApp": {
-      "value": "DevHEIGISMOAL"
-    },
-    "FindIT-Member-Create-FunctionName": {
-      "value": "FindIT-Member-Create"
-    },
-    "FindIT-Member-Update-FunctionApp": {
-      "value": "DevHEIGISMOAL"
-    },
-    "FindIT-Member-Update-FunctionName": {
-      "value": "FindIT-Member-Update"
-    },
     "Get_blob_content-path": {
       "value": "%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json"
     },

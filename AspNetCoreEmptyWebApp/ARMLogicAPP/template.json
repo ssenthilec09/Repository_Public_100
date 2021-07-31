@@ -4,7 +4,7 @@
   "parameters": {
     "logicAppName": {
       "type": "string",
-      "defaultValue": "DevOpsFindIT-OPCOMember-CU",
+      "defaultValue": "FindIT-OPCOMember-CU",
       "metadata": {
         "description": "Name of the Logic App."
       }
@@ -97,30 +97,6 @@
       "metadata": {
         "description": "Location of the Logic App."
       }
-    },
-    "FindIT-Member-Create-ResourceGroup": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().name]"
-    },
-    "FindIT-Member-Create-FunctionApp": {
-      "type": "string",
-      "defaultValue": "DevHEIGISMOAL"
-    },
-    "FindIT-Member-Create-FunctionName": {
-      "type": "string",
-      "defaultValue": "FindIT-Member-Create"
-    },
-    "FindIT-Member-Update-ResourceGroup": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().name]"
-    },
-    "FindIT-Member-Update-FunctionApp": {
-      "type": "string",
-      "defaultValue": "DevHEIGISMOAL"
-    },
-    "FindIT-Member-Update-FunctionName": {
-      "type": "string",
-      "defaultValue": "FindIT-Member-Update"
     },
     "Get_blob_content-path": {
       "type": "string",
@@ -219,87 +195,7 @@
           },
           "actions": {
             "Checking_whether_new_item_or_edit_item": {
-              "actions": {
-                "Create_item": {
-                  "runAfter": {
-                    "Parse_JSON": [
-                      "Succeeded"
-                    ]
-                  },
-                  "type": "ApiConnection",
-                  "inputs": {
-                    "body": {
-                      "DLErrorMessage": "@{body('Parse_JSON')['Error']}",
-                      "DLRegionName": "@{body('Parse_JSON')['RegionGroup']}",
-                      "DL_x0020_Automation_x0020_Messag": "@{body('Parse_JSON')['Action']}",
-                      "DL_x0020_Group_x0020_Name": "@{body('Parse_JSON')['Given group']}",
-                      "IsPrevSubProductParent": "@variables('IsProdParent')",
-                      "ItemID": "@triggerBody()?['ID']",
-                      "Item_x0020_Status": {
-                        "Value": "New"
-                      },
-                      "Name": {
-                        "Claims": "@triggerBody()?['Name']?['Claims']"
-                      },
-                      "OpCo": {
-                        "Value": "@triggerBody()?['OpCo']?['Value']"
-                      },
-                      "Product": {
-                        "Value": "ALL"
-                      },
-                      "Role": {
-                        "Value": "Change manager"
-                      },
-                      "SubProduct": {
-                        "Value": "@triggerBody()?['SubProduct']?['Value']"
-                      }
-                    },
-                    "host": {
-                      "connection": {
-                        "name": "@parameters('$connections')['sharepointonline']['connectionId']"
-                      }
-                    },
-                    "method": "post",
-                    "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://heiway.sharepoint.com/sites/Collaborationportal'))}/tables/@{encodeURIComponent(encodeURIComponent('5abcb5f4-2544-4c0b-8b07-dfc5eb46e1c1'))}/items"
-                  }
-                },
-                "FindIT-Member-Create": {
-                  "runAfter": {},
-                  "type": "Function",
-                  "inputs": {
-                    "body": {
-                      "IsProdParent": "@variables('IsProdParent')",
-                      "MemberName": "@triggerBody()?['Name']",
-                      "OPCO": "@triggerBody()?['OpCo']?['Value']",
-                      "OpcoRegion": "@variables('OpcoRegion')",
-                      "Product": "@triggerBody()?['SubProduct']?['Value']"
-                    },
-                    "function": {
-                      "id": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',parameters('FindIT-Member-Create-ResourceGroup'),'/providers/Microsoft.Web/sites/',parameters('FindIT-Member-Create-FunctionApp'),'/functions/',parameters('FindIT-Member-Create-FunctionName'))]"
-                    }
-                  }
-                },
-                "Parse_JSON": {
-                  "runAfter": {
-                    "FindIT-Member-Create": [
-                      "Succeeded"
-                    ]
-                  },
-                  "type": "ParseJson",
-                  "inputs": {
-                    "content": "@body('FindIT-Member-Create')",
-                    "schema": {
-                      "Action": "1 Update",
-                      "Error": "No Error",
-                      "Given group": "FINDIT-NSAM-AAD-Collaboration",
-                      "IsParent": "1",
-                      "NewValue": "{NSAM,Senthil.Kumar-S@heineken.com,Collaboration}",
-                      "OldValue": "{NSAM,Senthil.Kumar-S@heineken.com,Collaboration}",
-                      "RegionGroup": "FINDIT-0-AAD-Collaboration"
-                    }
-                  }
-                }
-              },
+              "actions": {},
               "runAfter": {
                 "IsProd_Parent": [
                   "Succeeded"
@@ -309,90 +205,7 @@
                 "actions": {
                   "For_each": {
                     "foreach": "@body('Validate_Item_from_FindIT-Backend_List')?['value']",
-                    "actions": {
-                      "FindIT-Member-Update": {
-                        "runAfter": {},
-                        "type": "Function",
-                        "inputs": {
-                          "body": {
-                            "IsPrevProdParent": "@items('For_each')?['IsPrevSubProductParent']",
-                            "IsProdParent": "@variables('IsProdParent')",
-                            "NewName": "@triggerBody()?['Name']",
-                            "NewOPCO": "@triggerBody()?['OpCo']?['Value']",
-                            "NewProd": "@triggerBody()?['SubProduct']?['Value']",
-                            "OldName": "@items('For_each')?['Name']",
-                            "OldOPCO": "@items('For_each')?['OpCo']?['Value']",
-                            "OldProd": "@items('For_each')?['SubProduct']?['Value']",
-                            "OpcoRegion": "@variables('OpcoRegion')"
-                          },
-                          "function": {
-                            "id": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',parameters('FindIT-Member-Update-ResourceGroup'),'/providers/Microsoft.Web/sites/',parameters('FindIT-Member-Update-FunctionApp'),'/functions/',parameters('FindIT-Member-Update-FunctionName'))]"
-                          }
-                        }
-                      },
-                      "Parse_JSON_2": {
-                        "runAfter": {
-                          "FindIT-Member-Update": [
-                            "Succeeded"
-                          ]
-                        },
-                        "type": "ParseJson",
-                        "inputs": {
-                          "content": "@body('FindIT-Member-Update')",
-                          "schema": {
-                            "Action": "1 Update",
-                            "Error": "No Error",
-                            "Given group": "FINDIT-NSAM-AAD-Collaboration",
-                            "IsParent": "1",
-                            "NewValue": "{NSAM,Senthil.Kumar-S@heineken.com,Collaboration}",
-                            "OldValue": "{NSAM,Senthil.Kumar-S@heineken.com,Collaboration}",
-                            "RegionGroup": "FINDIT-0-AAD-Collaboration"
-                          }
-                        }
-                      },
-                      "Update_item": {
-                        "runAfter": {
-                          "Parse_JSON_2": [
-                            "Succeeded"
-                          ]
-                        },
-                        "type": "ApiConnection",
-                        "inputs": {
-                          "body": {
-                            "DLErrorMessage": "@{body('Parse_JSON_2')['Error']}",
-                            "DLRegionName": "@{body('Parse_JSON_2')['RegionGroup']}",
-                            "DL_x0020_Automation_x0020_Messag": "@{body('Parse_JSON_2')['Action']}@{body('Parse_JSON_2')['NewValue']}@{body('Parse_JSON_2')['OldValue']} ",
-                            "DL_x0020_Group_x0020_Name": "@{body('Parse_JSON_2')['Given group']}",
-                            "IsPrevSubProductParent": "@variables('IsProdParent')",
-                            "Item_x0020_Status": {
-                              "Value": "Updated"
-                            },
-                            "Name": {
-                              "Claims": "@triggerBody()?['Name']?['Claims']"
-                            },
-                            "OpCo": {
-                              "Value": "@triggerBody()?['OpCo']?['Value']"
-                            },
-                            "Product": {
-                              "Value": "ALL"
-                            },
-                            "Role": {
-                              "Value": "Change manager"
-                            },
-                            "SubProduct": {
-                              "Value": "@triggerBody()?['SubProduct']?['Value']"
-                            }
-                          },
-                          "host": {
-                            "connection": {
-                              "name": "@parameters('$connections')['sharepointonline']['connectionId']"
-                            }
-                          },
-                          "method": "patch",
-                          "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://heiway.sharepoint.com/sites/Collaborationportal'))}/tables/@{encodeURIComponent(encodeURIComponent('5abcb5f4-2544-4c0b-8b07-dfc5eb46e1c1'))}/items/@{encodeURIComponent(items('For_each')?['ID'])}"
-                        }
-                      }
-                    },
+                    "actions": {},
                     "runAfter": {},
                     "type": "Foreach"
                   }
