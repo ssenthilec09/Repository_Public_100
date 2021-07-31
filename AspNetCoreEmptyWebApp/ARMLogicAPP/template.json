@@ -189,7 +189,7 @@
                   }
                 },
                 "method": "get",
-                "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://heiway.sharepoint.com/sites/Collaborationportal'))}/tables/@{encodeURIComponent(encodeURIComponent('f80c17f0-ea36-48d2-84f4-34532e99dfd6'))}/onnewitems"
+                "path": "[parameters('path1')]"
               }
             }
           },
@@ -339,7 +339,7 @@
                   }
                 },
                 "method": "get",
-                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent('heieudweustrprod01'))}/files/@{encodeURIComponent(encodeURIComponent(', parameters('__apostrophe'), base64(parameters('Get_blob_content-path')), parameters('__apostrophe'), '))}/content')]",
+                "path": "[parameters('path2')]",
                 "queries": {
                   "inferContentType": false
                 }
