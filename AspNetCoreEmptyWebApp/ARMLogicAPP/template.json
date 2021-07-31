@@ -180,7 +180,7 @@
                 "frequency": "[parameters('When_an_item_is_created_or_modified_in_FindITFrequency')]",
                 "interval": "[parameters('When_an_item_is_created_or_modified_in_FindITInterval')]"
               },
-              "splitOn": "/@triggerBody().value",
+              "splitOn": "/@{triggerBody().value}",
               "type": "ApiConnection",
               "inputs": {
                 "host": {
