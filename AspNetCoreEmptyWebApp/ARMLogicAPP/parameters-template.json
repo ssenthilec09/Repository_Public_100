@@ -16,6 +16,9 @@
     },
     "sharepointonline-1_displayName": {
       "value": "SHANMS02@heiway.net"
-    }
+    },
+	"logicAppLocation": {
+      "value": "westeurope"
+    },
   }
 }
