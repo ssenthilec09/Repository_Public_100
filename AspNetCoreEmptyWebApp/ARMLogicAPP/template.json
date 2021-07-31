@@ -98,6 +98,14 @@
         "description": "Location of the Logic App."
       }
     },
+    "Get_blob_content_(V2)-path": {
+      "type": "string",
+      "defaultValue": "%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json"
+    },
+    "__apostrophe": {
+      "type": "string",
+      "defaultValue": "'"
+    },
     "When_an_item_is_created_or_modified_in_FindITFrequency": {
       "type": "string",
       "defaultValue": "Minute"
@@ -105,6 +113,25 @@
     "When_an_item_is_created_or_modified_in_FindITInterval": {
       "type": "int",
       "defaultValue": 1
+    },
+    "azureblob-3_name": {
+      "type": "string",
+      "defaultValue": "azureblob-3"
+    },
+    "azureblob-3_displayName": {
+      "type": "string",
+      "defaultValue": "heieudweustrprod01"
+    },
+    "azureblob-3_accountName": {
+      "type": "string",
+      "defaultValue": "heieudweustrprod01",
+      "metadata": {
+        "description": "Name of the storage account the connector should use."
+      }
+    },
+    "azureblob-3_resourceGroupName": {
+      "type": "string",
+      "defaultValue": "HEICollabTestRG01"
     },
     "sharepointonline-1_name": {
       "type": "string",
@@ -130,6 +157,7 @@
       "name": "[parameters('logicAppName')]",
       "location": "[parameters('logicAppLocation')]",
       "dependsOn": [
+        "[resourceId('Microsoft.Web/connections', parameters('azureblob-3_name'))]",
         "[resourceId('Microsoft.Web/connections', parameters('sharepointonline-1_name'))]"
       ],
       "properties": {
@@ -248,6 +276,29 @@
                 ]
               }
             },
+            "Get_blob_content_(V2)": {
+              "runAfter": {
+                "Declare_Variable_For_OpcoRegion": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "[base64(parameters('Get_blob_content_(V2)-path'))]": "[parameters('Get_blob_content_(V2)-path')]"
+              },
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['azureblob']['connectionId']"
+                  }
+                },
+                "method": "get",
+                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent('heieudweustrprod01'))}/files/@{encodeURIComponent(encodeURIComponent(', parameters('__apostrophe'), base64(parameters('Get_blob_content_(V2)-path')), parameters('__apostrophe'), '))}/content')]",
+                "queries": {
+                  "inferContentType": false
+                }
+              }
+            },
             "Initialize_variable": {
               "runAfter": {
                 "Validate_Item_from_FindIT-Backend_List": [
@@ -267,7 +318,7 @@
             },
             "Initialize_variable_2": {
               "runAfter": {
-                "Declare_Variable_For_OpcoRegion": [
+                "Get_blob_content_(V2)": [
                   "Succeeded"
                 ]
               },
@@ -321,6 +372,11 @@
         "parameters": {
           "$connections": {
             "value": {
+              "azureblob": {
+                "id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',parameters('logicAppLocation'),'/managedApis/azureblob')]",
+                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('azureblob-3_name'))]",
+                "connectionName": "[parameters('azureblob-3_name')]"
+              },
               "sharepointonline": {
                 "id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',parameters('logicAppLocation'),'/managedApis/sharepointonline')]",
                 "connectionId": "[resourceId('Microsoft.Web/connections', parameters('sharepointonline-1_name'))]",
@@ -343,6 +399,22 @@
         "displayName": "[parameters('sharepointonline-1_displayName')]",
         "parameterValues": {
           "token:TenantId": "[parameters('sharepointonline-1_token:TenantId')]"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Web/connections",
+      "apiVersion": "2016-06-01",
+      "location": "[parameters('logicAppLocation')]",
+      "name": "[parameters('azureblob-3_name')]",
+      "properties": {
+        "api": {
+          "id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',parameters('logicAppLocation'),'/managedApis/azureblob')]"
+        },
+        "displayName": "[parameters('azureblob-3_displayName')]",
+        "parameterValues": {
+          "accountName": "[parameters('azureblob-3_accountName')]",
+          "accessKey": "[listKeys(resourceId(parameters('azureblob-3_resourceGroupName'),'Microsoft.Storage/storageAccounts', parameters('azureblob-3_accountName')), '2018-02-01').keys[0].value]"
         }
       }
     }
