@@ -180,7 +180,7 @@
                 "frequency": "[parameters('When_an_item_is_created_or_modified_in_FindITFrequency')]",
                 "interval": "[parameters('When_an_item_is_created_or_modified_in_FindITInterval')]"
               },
-              "splitOn": "@triggerBody()?['value']",
+              "splitOn": "@triggerBody().value",
               "type": "ApiConnection",
               "inputs": {
                 "host": {
@@ -431,7 +431,7 @@
                 "method": "get",
                 "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://heiway.sharepoint.com/sites/Collaborationportal'))}/tables/@{encodeURIComponent(encodeURIComponent('5abcb5f4-2544-4c0b-8b07-dfc5eb46e1c1'))}/items",
                 "queries": {
-                  "$filter": "ItemID eq '@{triggerBody()?['ID']}'",
+                  "$filter": "ItemID eq '@{triggerBody().ID}'",
                   "$top": 1
                 }
               }
