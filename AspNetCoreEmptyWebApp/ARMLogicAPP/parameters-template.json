@@ -37,6 +37,12 @@
     },
     "sharepointonline-1_displayName": {
       "value": "SHANMS02@heiway.net"
+    },
+    "path1": {
+      "value": "encodeURIComponent('https://heiway.sharepoint.com/sites/Collaborationportal')"
+    },
+	"path2": {
+      "value": "encodeURIComponent('f80c17f0-ea36-48d2-84f4-34532e99dfd6')"
     }
   }
 }
