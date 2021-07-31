@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "logicAppName": {
+      "value": "FindIT-OPCOMember-CU"
+    },
+    "FindIT-Member-Create-FunctionApp": {
+      "value": "DevHEIGISMOAL"
+    },
+    "FindIT-Member-Create-FunctionName": {
+      "value": "FindIT-Member-Create"
+    },
+    "FindIT-Member-Update-FunctionApp": {
+      "value": "DevHEIGISMOAL"
+    },
+    "FindIT-Member-Update-FunctionName": {
+      "value": "FindIT-Member-Update"
+    },
+    "Get_blob_content-path": {
+      "value": "%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json"
+    },
+    "__apostrophe": {
+      "value": "'"
+    },
+    "Get_blob_content_2-path": {
+      "value": "%2fhei-eud-test-data%2fTermStore_Products.json"
+    },
+    "When_an_item_is_created_or_modified_in_FindITFrequency": {
+      "value": "Minute"
+    },
+    "When_an_item_is_created_or_modified_in_FindITInterval": {
+      "value": 1
+    },
+    "azureblob-3_name": {
+      "value": "azureblob-3"
+    },
+    "azureblob-3_displayName": {
+      "value": "heieudweustrprod01"
+    },
+    "azureblob-3_accountName": {
+      "value": "heieudweustrprod01"
+    },
+    "azureblob-3_resourceGroupName": {
+      "value": "HEICollabTestRG01"
+    },
+    "sharepointonline-1_name": {
+      "value": "sharepointonline-1"
+    },
+    "sharepointonline-1_displayName": {
+      "value": "SHANMS02@heiway.net"
+    }
+  }
+}
