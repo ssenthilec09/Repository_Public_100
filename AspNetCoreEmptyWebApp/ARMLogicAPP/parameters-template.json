@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "logicAppName": {
+      "value": "FindIT-OPCOMember-CU-DevOps"
+    },
+    "When_an_item_is_created_or_modified_in_FindITFrequency": {
+      "value": "Minute"
+    },
+    "When_an_item_is_created_or_modified_in_FindITInterval": {
+      "value": 1
+    },
+    "sharepointonline-1_name": {
+      "value": "sharepointonline-1"
+    },
+    "sharepointonline-1_displayName": {
+      "value": "SHANMS02@heiway.net"
+    }
+  }
+}
