@@ -362,7 +362,7 @@
                   }
                 },
                 "method": "get",
-                "path": "[concat('/v2/datasets/@{uriComponent(uriComponent('heieudweustrprod01'))}/files/@{uriComponent(uriComponent(', parameters('__apostrophe'), base64(parameters('Get_blob_content_2-path')), parameters('__apostrophe'), '))}/content')]",
+                "path": "[parameters('path4')]",
                 "queries": {
                   "inferContentType": false
                 }
@@ -429,7 +429,7 @@
                   }
                 },
                 "method": "get",
-                "path": "/datasets/@{uriComponent(uriComponent('https://heiway.sharepoint.com/sites/Collaborationportal'))}/tables/@{uriComponent(uriComponent('5abcb5f4-2544-4c0b-8b07-dfc5eb46e1c1'))}/items",
+                "path": "[parameters('path3')]",
                 "queries": {
                   "$filter": "ItemID eq '/@{triggerBody().ID}'",
                   "$top": 1

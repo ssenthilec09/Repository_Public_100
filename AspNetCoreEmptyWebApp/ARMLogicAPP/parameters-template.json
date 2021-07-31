@@ -39,10 +39,16 @@
       "value": "SHANMS02@heiway.net"
     },
     "path1": {
-      "value": "/datasets/@{encodeURIComponent(encodeURIComponent('https://heiway.sharepoint.com/sites/Collaborationportal/'))}/tables/@{encodeURIComponent(encodeURIComponent('f80c17f0-ea36-48d2-84f4-34532e99dfd6'))}/onnewitems"
+      "value": "/datasets/@{uriComponent(uriComponent('https://heiway.sharepoint.com/sites/Collaborationportal/'))}/tables/@{uriComponent(uriComponent('f80c17f0-ea36-48d2-84f4-34532e99dfd6'))}/onnewitems"
     },
     "path2": {
-      "value": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent('heieudweustrprod01'))}/files/@{encodeURIComponent(encodeURIComponent(', parameters('__apostrophe'), base64(parameters('Get_blob_content-path')), parameters('__apostrophe'), '))}/content')]"
+      "value": "[concat('/v2/datasets/@{uriComponent(uriComponent('heieudweustrprod01'))}/files/@{uriComponent(uriComponent(', parameters('__apostrophe'), base64(parameters('Get_blob_content-path')), parameters('__apostrophe'), '))}/content')]"
+    },
+	"path3": {
+      "value": "/datasets/@{uriComponent(uriComponent('https://heiway.sharepoint.com/sites/Collaborationportal/'))}/tables/@{uriComponent(uriComponent('5abcb5f4-2544-4c0b-8b07-dfc5eb46e1c1'))}/items"
+    },
+	"path4": {
+      "value": "[concat('/v2/datasets/@{uriComponent(uriComponent('heieudweustrprod01'))}/files/@{uriComponent(uriComponent(', parameters('__apostrophe'), base64(parameters('Get_blob_content_2-path')), parameters('__apostrophe'), '))}/content')]"
     }
   }
 }
