@@ -43,6 +43,9 @@
     },
 	"path2": {
       "value": "encodeURIComponent('f80c17f0-ea36-48d2-84f4-34532e99dfd6')"
+    },
+	"Get_blob_content_(V2)-path": {
+      "value": "encodeURIComponent('%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json')"
     }
   }
 }
