@@ -185,6 +185,7 @@
                   }
                 },
                 "method": "get",
+				"type": "string",
                 "path": "/datasets/@{encodeURIComponent(parameters('path1'))}/tables/@{encodeURIComponent(parameters('path2'))}/onnewitems"
               }
             }
