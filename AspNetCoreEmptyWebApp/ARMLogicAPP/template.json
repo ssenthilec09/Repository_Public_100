@@ -1,252 +1,126 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "logicAppName": {
+    "sharepointonline_1_Connection_Name": {
       "type": "string",
-      "defaultValue": "[parameters('logicAppName')]",
+      "defaultValue": "sharepointonline-1"
+    },
+    "sharepointonline_1_Connection_DisplayName": {
+      "type": "string",
+      "defaultValue": "SHANMS02@heiway.net"
+    },
+    "sharepointonline_1_token:TenantId": {
+      "type": "string",
       "metadata": {
-        "description": "Name of the Logic App."
-      }
+        "description": "The tenant ID of for the Azure Active Directory application"
+      },
+      "defaultValue": "66e853de-ece3-44dd-9d66-ee6bdf4159d4"
     },
-    "logicAppLocation": {
-      "type": "string",
-      "defaultValue": "westeurope",
-      "allowedValues": [
-        "[resourceGroup().location]",
-        "asia",
-        "asiapacific",
-        "australia",
-        "australiacentral",
-        "australiacentral2",
-        "australiaeast",
-        "australiasoutheast",
-        "brazil",
-        "brazilsouth",
-        "brazilsoutheast",
-        "canada",
-        "canadacentral",
-        "canadaeast",
-        "centralindia",
-        "centralus",
-        "centraluseuap",
-        "centralusstage",
-        "chinaeast",
-        "chinanorth",
-        "eastasia",
-        "eastasiastage",
-        "eastus",
-        "eastus2",
-        "eastus2euap",
-        "eastus2stage",
-        "eastusstage",
-        "europe",
-        "francecentral",
-        "francesouth",
-        "germanycentral",
-        "germanynorth",
-        "germanynortheast",
-        "germanywestcentral",
-        "global",
-        "india",
-        "japan",
-        "japaneast",
-        "japanwest",
-        "jioindiawest",
-        "koreacentral",
-        "koreasouth",
-        "northcentralus",
-        "northcentralusstage",
-        "northeurope",
-        "norwayeast",
-        "norwaywest",
-        "southafricanorth",
-        "southafricawest",
-        "southcentralus",
-        "southcentralusstage",
-        "southeastasia",
-        "southeastasiastage",
-        "southindia",
-        "switzerland",
-        "switzerlandnorth",
-        "switzerlandwest",
-        "uaecentral",
-        "uaenorth",
-        "uk",
-        "uksouth",
-        "ukwest",
-        "unitedstates",
-        "usdodeast",
-        "usdodwest",
-        "usgovarizona",
-        "usgoviowa",
-        "usgovtexas",
-        "usgovvirginia",
-        "usseceast",
-        "ussecwest",
-        "west",
-        "westcentralus",
-        "westeurope",
-        "westindia",
-        "westus",
-        "westus2",
-        "westus2stage",
-        "westus3",
-        "westusstage"
-      ],
-      "metadata": {
-        "description": "Location of the Logic App."
-      }
-    },
-    "Get_blob_content_(V2)-path": {
-      "type": "string",
-      "defaultValue": "%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json"
-    },
-    "__apostrophe": {
-      "type": "string",
-      "defaultValue": "'"
-    },
-    "When_an_item_is_created_or_modified_in_FindITFrequency": {
-      "type": "string",
-      "defaultValue": "Minute"
-    },
-    "When_an_item_is_created_or_modified_in_FindITInterval": {
-      "type": "int",
-      "defaultValue": 1
-    },
-    "paramFindITBackUpListName": {
-      "type": "string",
-      "defaultValue": "FindIT-Backend"
-    },
-    "paramFindITListName": {
-      "type": "string",
-      "defaultValue": "FindIT"
-    },
-    "paramSiteUrl": {
-      "type": "string",
-      "defaultValue": "https://heiway.sharepoint.com/sites/Collaborationportal"
-    },
-    "paramStorageAccountFileNames": {
-      "type": "string",
-      "defaultValue": "/hei-eud-prod-dataflow/StoreTermOpcos.json"
-    },
-    "paramStorageAccountName": {
-      "type": "string",
-      "defaultValue": "heieudweustrprod01"
-    },
-    "azureblob-3_name": {
+    "azureblob_1_Connection_Name": {
       "type": "string",
       "defaultValue": "azureblob-3"
     },
-    "azureblob-3_displayName": {
+    "azureblob_1_Connection_DisplayName": {
       "type": "string",
       "defaultValue": "heieudweustrprod01"
     },
-    "azureblob-3_accountName": {
+    "azureblob_1_accountName": {
       "type": "string",
-      "defaultValue": "heieudweustrprod01",
       "metadata": {
         "description": "Name of the storage account the connector should use."
       }
     },
-    "azureblob-3_resourceGroupName": {
-      "type": "string",
-      "defaultValue": "HEICollabTestRG01"
-    },
-    "sharepointonline-1_name": {
-      "type": "string",
-      "defaultValue": "sharepointonline-1"
-    },
-    "sharepointonline-1_displayName": {
-      "type": "string",
-      "defaultValue": "SHANMS02@heiway.net"
-    },
-    "sharepointonline-1_token:TenantId": {
-      "type": "string",
-      "defaultValue": "[subscription().tenantId]",
+    "azureblob_1_accessKey": {
+      "type": "securestring",
       "metadata": {
-        "description": "The tenant ID of for the Azure Active Directory application"
+        "description": "Specify a valid primary/secondary storage account access key."
       }
+    },
+    "azureblob_1_authType": {
+      "type": "string",
+      "metadata": {
+        "description": "Authentication type to connect to your database"
+      },
+      "allowedValues": [
+        "basic",
+        "anonymous"
+      ]
+    },
+    "azureblob_1_privacySetting": {
+      "type": "string",
+      "metadata": {
+        "description": "Privacy Setting"
+      },
+      "allowedValues": [
+        "None",
+        "Private",
+        "Organizational",
+        "Public"
+      ]
+    },
+    "LogicAppLocation": {
+      "type": "string",
+      "minLength": 1,
+      "allowedValues": [
+        "[resourceGroup().location]",
+        "eastasia",
+        "southeastasia",
+        "centralus",
+        "eastus",
+        "eastus2",
+        "westus",
+        "northcentralus",
+        "southcentralus",
+        "northeurope",
+        "westeurope",
+        "japanwest",
+        "japaneast",
+        "brazilsouth",
+        "australiaeast",
+        "australiasoutheast",
+        "southindia",
+        "centralindia",
+        "westindia",
+        "canadacentral",
+        "canadaeast",
+        "uksouth",
+        "ukwest",
+        "westcentralus",
+        "westus2",
+        "koreacentral",
+        "koreasouth",
+        "francecentral",
+        "francesouth",
+        "uaecentral",
+        "uaenorth",
+        "southafricanorth",
+        "southafricawest",
+        "switzerlandnorth",
+        "switzerlandwest",
+        "germanynorth",
+        "germanywestcentral",
+        "norwayeast",
+        "brazilsoutheast"
+      ],
+      "defaultValue": "westeurope"
+    },
+    "LogicAppName": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "FindIT-OPCOMember-CU"
     }
   },
   "variables": {},
   "resources": [
     {
-      "type": "Microsoft.Logic/workflows",
-      "apiVersion": "2016-06-01",
-      "name": "@parameters('$connections')['name']",
-      "location": "westeuropessssssssssssssssssssssss",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/connections', parameters('azureblob-3_name'))]",
-        "[resourceId('Microsoft.Web/connections', parameters('sharepointonline-1_name'))]"
-      ],
       "properties": {
+        "state": "Enabled",
         "definition": {
           "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
-          "contentVersion": "1.0.0.0",
-          "parameters": {
-            "$connections": {
-              "defaultValue": {},
-              "type": "Object"
-            },
-            "FindITBackUpListName": {
-              "defaultValue": "[parameters('paramFindITBackUpListName')]",
-              "type": "String"
-            },
-            "FindITListName": {
-              "defaultValue": "[parameters('paramFindITListName')]",
-              "type": "String"
-            },
-            "SiteUrl": {
-              "defaultValue": "[parameters('paramSiteUrl')]",
-              "type": "String"
-            },
-            "StorageAccountFileNames": {
-              "defaultValue": "[parameters('paramStorageAccountFileNames')]",
-              "type": "String"
-            },
-            "StorageAccountName": {
-              "defaultValue": "[parameters('paramStorageAccountName')]",
-              "type": "String"
-            }
-          },
-          "triggers": {
-            "When_an_item_is_created_or_modified_in_FindIT": {
-              "recurrence": {
-                "frequency": "[parameters('When_an_item_is_created_or_modified_in_FindITFrequency')]",
-                "interval": "[parameters('When_an_item_is_created_or_modified_in_FindITInterval')]"
-              },
-              "splitOn": "@triggerBody()?['value']",
-              "type": "ApiConnection",
-              "inputs": {
-                "host": {
-                  "connection": {
-                    "name": "@parameters('$connections')['sharepointonline']['connectionId']"
-                  }
-                },
-                "method": "get",
-                "path": "[parameters('path2')]"
-              }
-            }
-          },
           "actions": {
             "Checking_whether_new_item_or_edit_item": {
-              "actions": {},
-              "runAfter": {
-                "IsProd_Parent": [
-                  "Succeeded"
-                ]
-              },
-              "else": {
-                "actions": {
-                  "For_each": {
-                    "foreach": "@body('Validate_Item_from_FindIT-Backend_List')?['value']",
-                    "actions": {},
-                    "runAfter": {},
-                    "type": "Foreach"
-                  }
-                }
-              },
+              "type": "If",
               "expression": {
                 "and": [
                   {
@@ -257,36 +131,25 @@
                   }
                 ]
               },
-              "type": "If"
-            },
-            "Condition": {
-              "actions": {
-                "Set_variable_2": {
-                  "runAfter": {},
-                  "type": "SetVariable",
-                  "inputs": {
-                    "name": "OpcoRegion",
-                    "value": "888"
-                  }
-                }
-              },
+              "actions": {},
               "runAfter": {
-                "Initialize_variable_2": [
+                "IsProd_Parent": [
                   "Succeeded"
                 ]
               },
               "else": {
                 "actions": {
-                  "Set_variable_4": {
-                    "runAfter": {},
-                    "type": "SetVariable",
-                    "inputs": {
-                      "name": "OpcoRegion",
-                      "value": "0"
-                    }
+                  "For_each": {
+                    "type": "Foreach",
+                    "foreach": "@body('Validate_Item_from_FindIT-Backend_List')?['value']",
+                    "actions": {},
+                    "runAfter": {}
                   }
                 }
-              },
+              }
+            },
+            "Condition": {
+              "type": "If",
               "expression": {
                 "and": [
                   {
@@ -297,14 +160,35 @@
                   }
                 ]
               },
-              "type": "If"
-            },
-            "Declare_Variable_For_OpcoRegion": {
+              "actions": {
+                "Set_variable_2": {
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "OpcoRegion",
+                    "value": "888"
+                  },
+                  "runAfter": {}
+                }
+              },
               "runAfter": {
-                "Initialize_variable": [
+                "Initialize_variable_2": [
                   "Succeeded"
                 ]
               },
+              "else": {
+                "actions": {
+                  "Set_variable_4": {
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "OpcoRegion",
+                      "value": "0"
+                    },
+                    "runAfter": {}
+                  }
+                }
+              }
+            },
+            "Declare_Variable_For_OpcoRegion": {
               "type": "InitializeVariable",
               "inputs": {
                 "variables": [
@@ -314,17 +198,14 @@
                     "value": "0"
                   }
                 ]
+              },
+              "runAfter": {
+                "Initialize_variable": [
+                  "Succeeded"
+                ]
               }
             },
             "Get_blob_content_(V2)": {
-              "runAfter": {
-                "Declare_Variable_For_OpcoRegion": [
-                  "Succeeded"
-                ]
-              },
-              "metadata": {
-                "[base64(parameters('Get_blob_content_(V2)-path'))]": "[parameters('Get_blob_content_(V2)-path')]"
-              },
               "type": "ApiConnection",
               "inputs": {
                 "host": {
@@ -333,15 +214,18 @@
                   }
                 },
                 "method": "get",
-                "path": "#{[concat('/v2/datasets/',uriComponent(uriComponent(parameters('Blob'))),'/files/',uriComponent(uriComponent(parameters('StorageAccountFileNames'))),'/content')]}#"
-              }
-            },
-            "Initialize_variable": {
+                "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent(parameters('Blob')))}/files/@{encodeURIComponent(encodeURIComponent(parameters('StorageAccountFileNames')))}/content"
+              },
               "runAfter": {
-                "Validate_Item_from_FindIT-Backend_List": [
+                "Declare_Variable_For_OpcoRegion": [
                   "Succeeded"
                 ]
               },
+              "metadata": {
+                "JTJmaGVpLWV1ZC1wcm9kLWRhdGFmbG93JTJmU3RvcmVUZXJtT3Bjb3MuanNvbg==": "/hei-eud-prod-dataflow/StoreTermOpcos.json"
+              }
+            },
+            "Initialize_variable": {
               "type": "InitializeVariable",
               "inputs": {
                 "variables": [
@@ -351,14 +235,14 @@
                     "value": "@length(body('Validate_Item_from_FindIT-Backend_List')?['value'])"
                   }
                 ]
+              },
+              "runAfter": {
+                "Validate_Item_from_FindIT-Backend_List": [
+                  "Succeeded"
+                ]
               }
             },
             "Initialize_variable_2": {
-              "runAfter": {
-                "Get_blob_content_(V2)": [
-                  "Succeeded"
-                ]
-              },
               "type": "InitializeVariable",
               "inputs": {
                 "variables": [
@@ -367,14 +251,14 @@
                     "type": "string"
                   }
                 ]
+              },
+              "runAfter": {
+                "Get_blob_content_(V2)": [
+                  "Succeeded"
+                ]
               }
             },
             "IsProd_Parent": {
-              "runAfter": {
-                "Condition": [
-                  "Succeeded"
-                ]
-              },
               "type": "InitializeVariable",
               "inputs": {
                 "variables": [
@@ -383,6 +267,11 @@
                     "type": "integer",
                     "value": 0
                   }
+                ]
+              },
+              "runAfter": {
+                "Condition": [
+                  "Succeeded"
                 ]
               }
             },
@@ -404,57 +293,113 @@
               }
             }
           },
+          "parameters": {
+            "$connections": {
+              "defaultValue": {},
+              "type": "Object"
+            },
+            "FindITBackUpListName": {
+              "defaultValue": "FindIT-Backend",
+              "type": "String"
+            },
+            "FindITListName": {
+              "defaultValue": "FindIT",
+              "type": "String"
+            },
+            "SiteUrl": {
+              "defaultValue": "https://heiway.sharepoint.com/sites/Collaborationportal",
+              "type": "String"
+            },
+            "StorageAccountFileNames": {
+              "defaultValue": "/hei-eud-prod-dataflow/StoreTermOpcos.json",
+              "type": "String"
+            },
+            "StorageAccountName": {
+              "defaultValue": "heieudweustrprod01",
+              "type": "String"
+            }
+          },
+          "triggers": {
+            "When_an_item_is_created_or_modified_in_FindIT": {
+              "recurrence": {
+                "frequency": "Minute",
+                "interval": 1
+              },
+              "splitOn": "@triggerBody()?['value']",
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['sharepointonline']['connectionId']"
+                  }
+                },
+                "method": "get",
+                "path": "/datasets/@{encodeURIComponent(encodeURIComponent(parameters('SiteUrl')))}/tables/@{encodeURIComponent(encodeURIComponent(parameters('FindITListName')))}/onnewitems"
+              }
+            }
+          },
+          "contentVersion": "1.0.0.0",
           "outputs": {}
         },
         "parameters": {
           "$connections": {
             "value": {
               "azureblob": {
-                "id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',parameters('logicAppLocation'),'/managedApis/azureblob')]",
-                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('azureblob-3_name'))]",
-                "connectionName": "[parameters('azureblob-3_name')]"
+                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', 'westeurope', '/managedApis/', 'azureblob')]",
+                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('azureblob_1_Connection_Name'))]",
+                "connectionName": "[parameters('azureblob_1_Connection_Name')]"
               },
               "sharepointonline": {
-                "id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',parameters('logicAppLocation'),'/managedApis/sharepointonline')]",
-                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('sharepointonline-1_name'))]",
-                "connectionName": "[parameters('sharepointonline-1_name')]"
-              },
-			  "name": {
-				  "FindIT-OPCOMember-CU-DevOps"
-			  }
+                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', 'westeurope', '/managedApis/', 'sharepointonline')]",
+                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('sharepointonline_1_Connection_Name'))]",
+                "connectionName": "[parameters('sharepointonline_1_Connection_Name')]"
+              }
             }
           }
         }
-      }
+      },
+      "name": "[parameters('LogicAppName')]",
+      "type": "Microsoft.Logic/workflows",
+      "location": "[parameters('LogicAppLocation')]",
+      "tags": {
+        "displayName": "LogicApp"
+      },
+      "apiVersion": "2016-06-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/connections', parameters('azureblob_1_Connection_Name'))]",
+        "[resourceId('Microsoft.Web/connections', parameters('sharepointonline_1_Connection_Name'))]"
+      ]
     },
     {
-      "type": "Microsoft.Web/connections",
-      "apiVersion": "2016-06-01",
-      "location": "[parameters('logicAppLocation')]",
-      "name": "sharepointonline-1",
+      "type": "MICROSOFT.WEB/CONNECTIONS",
+      "apiVersion": "2018-07-01-preview",
+      "name": "[parameters('sharepointonline_1_Connection_Name')]",
+      "location": "westeurope",
       "properties": {
         "api": {
-          "id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',parameters('logicAppLocation'),'/managedApis/sharepointonline')]"
+          "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', 'westeurope', '/managedApis/', 'sharepointonline')]"
         },
-        "displayName": "[parameters('sharepointonline-1_displayName')]",
-        "parameterValues": {
-          "token:TenantId": "[parameters('sharepointonline-1_token:TenantId')]"
+        "displayName": "[parameters('sharepointonline_1_Connection_DisplayName')]",
+        "nonSecretParameterValues": {
+          "token:TenantId": "[parameters('sharepointonline_1_token:TenantId')]"
         }
       }
     },
     {
-      "type": "Microsoft.Web/connections",
-      "apiVersion": "2016-06-01",
-      "location": "[parameters('logicAppLocation')]",
-      "name": "azureblob-3",
+      "type": "MICROSOFT.WEB/CONNECTIONS",
+      "apiVersion": "2018-07-01-preview",
+      "name": "[parameters('azureblob_1_Connection_Name')]",
+      "location": "westeurope",
       "properties": {
         "api": {
-          "id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',parameters('logicAppLocation'),'/managedApis/azureblob')]"
+          "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', 'westeurope', '/managedApis/', 'azureblob')]"
         },
-        "displayName": "[parameters('azureblob-3_displayName')]",
+        "displayName": "[parameters('azureblob_1_Connection_DisplayName')]",
         "parameterValues": {
-          "accountName": "[parameters('azureblob-3_accountName')]",
-          "accessKey": "[listKeys(resourceId(parameters('azureblob-3_resourceGroupName'),'Microsoft.Storage/storageAccounts', parameters('azureblob-3_accountName')), '2018-02-01').keys[0].value]"
+          "accountName": "[parameters('azureblob_1_accountName')]",
+          "accessKey": "[parameters('azureblob_1_accessKey')]",
+          "authType": "[parameters('azureblob_1_authType')]",
+          "privacySetting": "[parameters('azureblob_1_privacySetting')]"
         }
       }
     }

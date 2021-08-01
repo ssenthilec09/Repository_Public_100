@@ -2,62 +2,38 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "logicAppName": {
-      "value": "#{FindIT-OPCOMember-CU-DevOps}#"
+    "sharepointonline_1_Connection_Name": {
+      "value": "sharepointonline-1"
     },
-	"logicAppLocation": {
-      "value": "#{westeurope}#"
+    "sharepointonline_1_Connection_DisplayName": {
+      "value": "SHANMS02@heiway.net"
     },
-	"Path1": {
-      "value": "#{}#"
+    "sharepointonline_1_token:TenantId": {
+      "value": "66e853de-ece3-44dd-9d66-ee6bdf4159d4"
     },
-	"Path2": {
-      "value": "#{}#"
+    "azureblob_1_Connection_Name": {
+      "value": "azureblob-3"
     },
-    "Get_blob_content_(V2)-path": {
-      "value": "#{%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json}#"
+    "azureblob_1_Connection_DisplayName": {
+      "value": "heieudweustrprod01"
     },
-    "__apostrophe": {
-      "value": "'"
+    "azureblob_1_accountName": {
+      "value": null
     },
-    "When_an_item_is_created_or_modified_in_FindITFrequency": {
-      "value": "#{Minute}#"
+    "azureblob_1_accessKey": {
+      "value": null
     },
-    "When_an_item_is_created_or_modified_in_FindITInterval": {
-      "value": "#{1}#"
+    "azureblob_1_authType": {
+      "value": null
     },
-    "paramFindITBackUpListName": {
-      "value": "#{FindIT-Backend}#"
+    "azureblob_1_privacySetting": {
+      "value": null
     },
-    "paramFindITListName": {
-      "value": "#{FindIT}#"
+    "LogicAppLocation": {
+      "value": "westeurope"
     },
-    "paramSiteUrl": {
-      "value": "#{https://heiway.sharepoint.com/sites/Collaborationportal}#"
-    },
-    "paramStorageAccountFileNames": {
-      "value": "#{/hei-eud-prod-dataflow/StoreTermOpcos.json}#"
-    },
-    "paramStorageAccountName": {
-      "value": "#{heieudweustrprod01}#"
-    },
-    "azureblob-3_name": {
-      "value": "#{azureblob-3}#"
-    },
-    "azureblob-3_displayName": {
-      "value": "#{heieudweustrprod01}#"
-    },
-    "azureblob-3_accountName": {
-      "value": "#{heieudweustrprod01}#"
-    },
-    "azureblob-3_resourceGroupName": {
-      "value": "#{HEICollabTestRG01}#"
-    },
-    "sharepointonline-1_name": {
-      "value": "#{sharepointonline-1}#"
-    },
-    "sharepointonline-1_displayName": {
-      "value": "#{SHANMS02@heiway.net}#"
+    "LogicAppName": {
+      "value": "FindIT-OPCOMember-CU-DevOps"
     }
   }
 }
