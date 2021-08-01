@@ -5,6 +5,9 @@
     "logicAppName": {
       "value": "FindIT-OPCOMember-CU"
     },
+	"logicAppLocation": {
+      "value": "westeurope"
+    },
     "Get_blob_content_(V2)-path": {
       "value": "%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json"
     },
