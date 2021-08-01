@@ -225,7 +225,7 @@
                   }
                 },
                 "method": "get",
-                "path": "/datasets/@{encodeURIComponent(encodeURIComponent(parameters('SiteUrl')))}/tables/@{encodeURIComponent(encodeURIComponent(parameters('FindITListName')))}/onnewitems"
+                "path": "[parameters('path2')]"
               }
             }
           },
@@ -333,7 +333,7 @@
                   }
                 },
                 "method": "get",
-                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(parameters('Blob')))}/files/@{encodeURIComponent(encodeURIComponent(parameters('StorageAccountFileNames')))}/content')]"
+                "path": "[parameters('path1')]"
               }
             },
             "Initialize_variable": {
