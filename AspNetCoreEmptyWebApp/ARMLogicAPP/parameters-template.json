@@ -45,10 +45,13 @@
       "value": "encodeURIComponent('f80c17f0-ea36-48d2-84f4-34532e99dfd6')"
     },
 	"path3": {
-      "value":"/datasets/@{encodeURIComponent(parameters('path1'))}/tables/@{encodeURIComponent(parameters('path2'))}/onnewitems"
+      "value":""
     },
 	"path4": {
-		"value":"[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent('heieudweustrprod01'))}/files/@{encodeURIComponent(encodeURIComponent(', parameters('__apostrophe'), base64(parameters('Get_blob_content_(V2)-path')), parameters('__apostrophe'), '))}/content')]"
+		"value":""
+	},
+	"path5": {
+		"value":""
 	},
 	"Get_blob_content_(V2)-path": {
       "value": "encodeURIComponent('%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json')"
