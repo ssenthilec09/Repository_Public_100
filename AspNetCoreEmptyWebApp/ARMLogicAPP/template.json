@@ -333,7 +333,7 @@
                   }
                 },
                 "method": "get",
-                "path": "[parameters('path1')]"
+                "path": "#{[concat('/v2/datasets/',uriComponent(parameters('Blob')),'/files/',uriComponent(parameters('StorageAccountFileNames')),'/content')]}#"
               }
             },
             "Initialize_variable": {
