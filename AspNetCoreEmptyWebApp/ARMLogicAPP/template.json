@@ -4,7 +4,7 @@
   "parameters": {
     "logicAppName": {
       "type": "string",
-      "defaultValue": "FindIT-OPCOMember-CU-DevOps",
+      "defaultValue": "[parameters('logicAppName')]",
       "metadata": {
         "description": "Name of the Logic App."
       }
@@ -174,8 +174,8 @@
     {
       "type": "Microsoft.Logic/workflows",
       "apiVersion": "2016-06-01",
-      "name": "FindIT-OPCOMember-CU-DevOps",
-      "location": "westeurope",
+      "name": "FindIT-OPCOMember-CU-DevOpsResourcesssss",
+      "location": "westeuropessssssssssssssssssssssss",
       "dependsOn": [
         "[resourceId('Microsoft.Web/connections', parameters('azureblob-3_name'))]",
         "[resourceId('Microsoft.Web/connections', parameters('sharepointonline-1_name'))]"
