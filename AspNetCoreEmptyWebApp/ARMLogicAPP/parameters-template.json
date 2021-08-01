@@ -3,55 +3,61 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "logicAppName": {
-      "value": "FindIT-OPCOMember-CU"
+      "value": "#{FindIT-OPCOMember-CU}#"
     },
 	"logicAppLocation": {
-      "value": "westeurope"
+      "value": "#{westeurope}#"
+    },
+	"Path1": {
+      "value": "#{[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(parameters('Blob')))}/files/@{encodeURIComponent(encodeURIComponent(parameters('StorageAccountFileNames')))}/content')]}#"
+    },
+	"Path2": {
+      "value": "#{/datasets/@{encodeURIComponent(encodeURIComponent(parameters('SiteUrl')))}/tables/@{encodeURIComponent(encodeURIComponent(parameters('FindITListName')))}/onnewitems}#"
     },
     "Get_blob_content_(V2)-path": {
-      "value": "%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json"
+      "value": "#{%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json}#"
     },
     "__apostrophe": {
       "value": "'"
     },
     "When_an_item_is_created_or_modified_in_FindITFrequency": {
-      "value": "Minute"
+      "value": "#{Minute}#"
     },
     "When_an_item_is_created_or_modified_in_FindITInterval": {
-      "value": 1
+      "value": "#{1}#"
     },
     "paramFindITBackUpListName": {
-      "value": "FindIT-Backend"
+      "value": "#{FindIT-Backend}#"
     },
     "paramFindITListName": {
-      "value": "FindIT"
+      "value": "#{FindIT}#"
     },
     "paramSiteUrl": {
-      "value": "https://heiway.sharepoint.com/sites/Collaborationportal"
+      "value": "#{https://heiway.sharepoint.com/sites/Collaborationportal}#"
     },
     "paramStorageAccountFileNames": {
-      "value": "/hei-eud-prod-dataflow/StoreTermOpcos.json"
+      "value": "#{/hei-eud-prod-dataflow/StoreTermOpcos.json}#"
     },
     "paramStorageAccountName": {
-      "value": "heieudweustrprod01"
+      "value": "#{heieudweustrprod01}#"
     },
     "azureblob-3_name": {
-      "value": "azureblob-3"
+      "value": "#{azureblob-3}#"
     },
     "azureblob-3_displayName": {
-      "value": "heieudweustrprod01"
+      "value": "#{heieudweustrprod01}#"
     },
     "azureblob-3_accountName": {
-      "value": "heieudweustrprod01"
+      "value": "#{heieudweustrprod01}#"
     },
     "azureblob-3_resourceGroupName": {
-      "value": "HEICollabTestRG01"
+      "value": "#{HEICollabTestRG01}#"
     },
     "sharepointonline-1_name": {
-      "value": "sharepointonline-1"
+      "value": "#{sharepointonline-1}#"
     },
     "sharepointonline-1_displayName": {
-      "value": "SHANMS02@heiway.net"
+      "value": "#{SHANMS02@heiway.net}#"
     }
   }
 }
