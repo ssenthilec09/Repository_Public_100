@@ -174,7 +174,7 @@
     {
       "type": "Microsoft.Logic/workflows",
       "apiVersion": "2016-06-01",
-      "name": "FindIT-OPCOMember-CU-DevOpsResourcesssss",
+      "name": "@parameters('$connections')['name']",
       "location": "westeuropessssssssssssssssssssssss",
       "dependsOn": [
         "[resourceId('Microsoft.Web/connections', parameters('azureblob-3_name'))]",
