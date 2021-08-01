@@ -12,7 +12,7 @@
       "value": "#{[concat('/v2/datasets/',uriComponent(parameters('Blob')),'/files/',uriComponent(parameters('StorageAccountFileNames')),'/content')]}#"
     },
 	"Path2": {
-      "value": "#{[concat('/datasets/',uriComponent(parameters('SiteUrl')),'/tables/',uriComponent(parameters('FindITListName')),'/onnewitems)]}#"
+      "value": "#{[concat('/datasets/',uriComponent(uriComponent(parameters('SiteUrl'))),'/tables/',uriComponent(uriComponent(parameters('FindITListName'))),'/onnewitems)]}#"
     },
     "Get_blob_content_(V2)-path": {
       "value": "#{%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json}#"
