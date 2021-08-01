@@ -11,7 +11,7 @@
     },
     "logicAppLocation": {
       "type": "string",
-      "defaultValue": "[resourceGroup().location]",
+      "defaultValue": "westeurope",
       "allowedValues": [
         "[resourceGroup().location]",
         "asia",
@@ -174,8 +174,8 @@
     {
       "type": "Microsoft.Logic/workflows",
       "apiVersion": "2016-06-01",
-      "name": "[parameters('logicAppName')]",
-      "location": "[parameters('logicAppLocation')]",
+      "name": "FindIT-OPCOMember-CU",
+      "location": "westeurope",
       "dependsOn": [
         "[resourceId('Microsoft.Web/connections', parameters('azureblob-3_name'))]",
         "[resourceId('Microsoft.Web/connections', parameters('sharepointonline-1_name'))]"
