@@ -418,7 +418,10 @@
                 "id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',parameters('logicAppLocation'),'/managedApis/sharepointonline')]",
                 "connectionId": "[resourceId('Microsoft.Web/connections', parameters('sharepointonline-1_name'))]",
                 "connectionName": "[parameters('sharepointonline-1_name')]"
-              }
+              },
+			  "name": {
+				  "FindIT-OPCOMember-CU-DevOps"
+			  }
             }
           }
         }
