@@ -9,10 +9,10 @@
       "value": "#{westeurope}#"
     },
 	"Path1": {
-      "value": "#{[concat('/v2/datasets/',uriComponent(parameters('Blob')),'/files/',uriComponent(parameters('StorageAccountFileNames')),'/content')]}#"
+      "value": "#{}#"
     },
 	"Path2": {
-      "value": "#{[concat('/datasets/',uriComponent(uriComponent(parameters('SiteUrl'))),'/tables/',uriComponent(uriComponent(parameters('FindITListName'))),'/onnewitems)]}#"
+      "value": "#{}#"
     },
     "Get_blob_content_(V2)-path": {
       "value": "#{%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json}#"
