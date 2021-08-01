@@ -186,7 +186,7 @@
                 },
                 "method": "get",
 				"type": "string",
-                "path": "/datasets/@{encodeURIComponent(parameters('path1'))}/tables/@{encodeURIComponent(parameters('path2'))}/onnewitems"
+                "path": [parameters('path3')]
               }
             }
           },
@@ -294,7 +294,7 @@
                   }
                 },
                 "method": "get",
-                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent('heieudweustrprod01'))}/files/@{encodeURIComponent(encodeURIComponent(', parameters('__apostrophe'), base64(parameters('Get_blob_content_(V2)-path')), parameters('__apostrophe'), '))}/content')]",
+				"path": [parameters('path4')],
                 "queries": {
                   "inferContentType": false
                 }
