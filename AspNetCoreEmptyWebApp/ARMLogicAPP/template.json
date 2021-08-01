@@ -4,7 +4,7 @@
   "parameters": {
     "logicAppName": {
       "type": "string",
-      "defaultValue": "FindIT-OPCOMember-CU-DevOps",
+      "defaultValue": "FindIT-OPCOMember-CU",
       "metadata": {
         "description": "Name of the Logic App."
       }
@@ -114,6 +114,26 @@
       "type": "int",
       "defaultValue": 1
     },
+    "paramFindITBackUpListName": {
+      "type": "string",
+      "defaultValue": "FindIT-Backend"
+    },
+    "paramFindITListName": {
+      "type": "string",
+      "defaultValue": "FindIT"
+    },
+    "paramSiteUrl": {
+      "type": "string",
+      "defaultValue": "https://heiway.sharepoint.com/sites/Collaborationportal"
+    },
+    "paramStorageAccountFileNames": {
+      "type": "string",
+      "defaultValue": "/hei-eud-prod-dataflow/StoreTermOpcos.json"
+    },
+    "paramStorageAccountName": {
+      "type": "string",
+      "defaultValue": "heieudweustrprod01"
+    },
     "azureblob-3_name": {
       "type": "string",
       "defaultValue": "azureblob-3"
@@ -168,6 +188,26 @@
             "$connections": {
               "defaultValue": {},
               "type": "Object"
+            },
+            "FindITBackUpListName": {
+              "defaultValue": "[parameters('paramFindITBackUpListName')]",
+              "type": "String"
+            },
+            "FindITListName": {
+              "defaultValue": "[parameters('paramFindITListName')]",
+              "type": "String"
+            },
+            "SiteUrl": {
+              "defaultValue": "[parameters('paramSiteUrl')]",
+              "type": "String"
+            },
+            "StorageAccountFileNames": {
+              "defaultValue": "[parameters('paramStorageAccountFileNames')]",
+              "type": "String"
+            },
+            "StorageAccountName": {
+              "defaultValue": "[parameters('paramStorageAccountName')]",
+              "type": "String"
             }
           },
           "triggers": {
@@ -185,8 +225,7 @@
                   }
                 },
                 "method": "get",
-				"type": "string",
-                "path": [parameters('path3')]
+                "path": "/datasets/@{encodeURIComponent(encodeURIComponent(parameters('SiteUrl')))}/tables/@{encodeURIComponent(encodeURIComponent(parameters('FindITListName')))}/onnewitems"
               }
             }
           },
@@ -294,10 +333,7 @@
                   }
                 },
                 "method": "get",
-				"path": [parameters('path4')],
-                "queries": {
-                  "inferContentType": false
-                }
+                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(parameters('Blob')))}/files/@{encodeURIComponent(encodeURIComponent(parameters('StorageAccountFileNames')))}/content')]"
               }
             },
             "Initialize_variable": {
@@ -360,7 +396,7 @@
                   }
                 },
                 "method": "get",
-                "path": [parameters('path5')],
+                "path": "/datasets/@{encodeURIComponent(encodeURIComponent(parameters('SiteUrl')))}/tables/@{encodeURIComponent(encodeURIComponent(parameters('FindITBackUpListName')))}/items",
                 "queries": {
                   "$filter": "ItemID eq '@{triggerBody()?['ID']}'",
                   "$top": 1

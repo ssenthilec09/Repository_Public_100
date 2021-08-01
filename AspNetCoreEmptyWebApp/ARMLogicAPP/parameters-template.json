@@ -3,10 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "logicAppName": {
-      "value": "FindIT-OPCOMember-CU-DevOps"
-    },
-	"logicAppLocation": {
-      "value": "westeurope"
+      "value": "FindIT-OPCOMember-CU"
     },
     "Get_blob_content_(V2)-path": {
       "value": "%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json"
@@ -19,6 +16,21 @@
     },
     "When_an_item_is_created_or_modified_in_FindITInterval": {
       "value": 1
+    },
+    "paramFindITBackUpListName": {
+      "value": "FindIT-Backend"
+    },
+    "paramFindITListName": {
+      "value": "FindIT"
+    },
+    "paramSiteUrl": {
+      "value": "https://heiway.sharepoint.com/sites/Collaborationportal"
+    },
+    "paramStorageAccountFileNames": {
+      "value": "/hei-eud-prod-dataflow/StoreTermOpcos.json"
+    },
+    "paramStorageAccountName": {
+      "value": "heieudweustrprod01"
     },
     "azureblob-3_name": {
       "value": "azureblob-3"
@@ -37,24 +49,6 @@
     },
     "sharepointonline-1_displayName": {
       "value": "SHANMS02@heiway.net"
-    },
-    "path1": {
-      "value": "encodeURIComponent('https://heiway.sharepoint.com/sites/Collaborationportal')"
-    },
-	"path2": {
-      "value": "encodeURIComponent('f80c17f0-ea36-48d2-84f4-34532e99dfd6')"
-    },
-	"path3": {
-      "value":""
-    },
-	"path4": {
-		"value":""
-	},
-	"path5": {
-		"value":""
-	},
-	"Get_blob_content_(V2)-path": {
-      "value": "encodeURIComponent('%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json')"
     }
   }
 }
