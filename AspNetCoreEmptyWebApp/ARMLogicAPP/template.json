@@ -155,7 +155,7 @@
     },
     "sharepointonline-1_name": {
       "type": "string",
-      "defaultValue": "sharepointonline-1"
+      "defaultValue": "sharepointonline-3"
     },
     "sharepointonline-1_displayName": {
       "type": "string",
