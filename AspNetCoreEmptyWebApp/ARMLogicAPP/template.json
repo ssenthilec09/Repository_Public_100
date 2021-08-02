@@ -177,8 +177,8 @@
       "name": "[parameters('logicAppName')]",
       "location": "[parameters('logicAppLocation')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/connections', parameters('azureblob-3_name'))]",
-        "[resourceId('Microsoft.Web/connections', parameters('sharepointonline-1_name'))]"
+        "[resourceId('Microsoft.Web/connections', parameters('sharepointonline-1_name'))]",
+		        "[resourceId('Microsoft.Web/connections', parameters('azureblob-3_name'))]"
       ],
       "properties": {
         "definition": {
