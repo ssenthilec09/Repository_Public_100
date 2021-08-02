@@ -378,7 +378,7 @@
                   }
                 },
                 "method": "get",
-                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(parameters('Blob')))}/files/@{encodeURIComponent(encodeURIComponent(parameters('StorageAccountFileNames')))}/content')]"
+                "path": "#{[concat('/v2/datasets/',uriComponent(uriComponent(parameters('Blob'))),'/files/',uriComponent(uriComponent(parameters('StorageAccountFileNames'))),'/content')]}#"
               }
             },
             "Get_secret": {
