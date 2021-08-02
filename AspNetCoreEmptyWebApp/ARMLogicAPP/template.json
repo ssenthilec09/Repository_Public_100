@@ -136,7 +136,7 @@
     },
     "azureblob-3_name": {
       "type": "string",
-      "defaultValue": "azureblob-3"
+      "defaultValue": "azureblob-4"
     },
     "azureblob-3_displayName": {
       "type": "string",
