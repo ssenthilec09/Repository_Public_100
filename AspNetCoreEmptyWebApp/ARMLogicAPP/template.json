@@ -1,0 +1,575 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "logicAppName": {
+      "type": "string",
+      "defaultValue": "FindIT-OPCOMember-CU",
+      "metadata": {
+        "description": "Name of the Logic App."
+      }
+    },
+    "logicAppLocation": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "allowedValues": [
+        "[resourceGroup().location]",
+        "asia",
+        "asiapacific",
+        "australia",
+        "australiacentral",
+        "australiacentral2",
+        "australiaeast",
+        "australiasoutheast",
+        "brazil",
+        "brazilsouth",
+        "brazilsoutheast",
+        "canada",
+        "canadacentral",
+        "canadaeast",
+        "centralindia",
+        "centralus",
+        "centraluseuap",
+        "centralusstage",
+        "chinaeast",
+        "chinanorth",
+        "eastasia",
+        "eastasiastage",
+        "eastus",
+        "eastus2",
+        "eastus2euap",
+        "eastus2stage",
+        "eastusstage",
+        "europe",
+        "francecentral",
+        "francesouth",
+        "germanycentral",
+        "germanynorth",
+        "germanynortheast",
+        "germanywestcentral",
+        "global",
+        "india",
+        "japan",
+        "japaneast",
+        "japanwest",
+        "jioindiawest",
+        "koreacentral",
+        "koreasouth",
+        "northcentralus",
+        "northcentralusstage",
+        "northeurope",
+        "norwayeast",
+        "norwaywest",
+        "southafricanorth",
+        "southafricawest",
+        "southcentralus",
+        "southcentralusstage",
+        "southeastasia",
+        "southeastasiastage",
+        "southindia",
+        "switzerland",
+        "switzerlandnorth",
+        "switzerlandwest",
+        "uaecentral",
+        "uaenorth",
+        "uk",
+        "uksouth",
+        "ukwest",
+        "unitedstates",
+        "usdodeast",
+        "usdodwest",
+        "usgovarizona",
+        "usgoviowa",
+        "usgovtexas",
+        "usgovvirginia",
+        "usseceast",
+        "ussecwest",
+        "west",
+        "westcentralus",
+        "westeurope",
+        "westindia",
+        "westus",
+        "westus2",
+        "westus2stage",
+        "westus3",
+        "westusstage"
+      ],
+      "metadata": {
+        "description": "Location of the Logic App."
+      }
+    },
+    "Get_blob_content_(V2)-path": {
+      "type": "string",
+      "defaultValue": "%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json"
+    },
+    "__apostrophe": {
+      "type": "string",
+      "defaultValue": "'"
+    },
+    "RecurrenceFrequency": {
+      "type": "string",
+      "defaultValue": "Week"
+    },
+    "RecurrenceInterval": {
+      "type": "int",
+      "defaultValue": 3
+    },
+    "paramFindITBackUpListName": {
+      "type": "string",
+      "defaultValue": "FindIT-Backend"
+    },
+    "paramFindITListName": {
+      "type": "string",
+      "defaultValue": "FindIT"
+    },
+    "paramSiteUrl": {
+      "type": "string",
+      "defaultValue": "https://heiway.sharepoint.com/sites/Collaborationportal"
+    },
+    "paramStorageAccountFileNames": {
+      "type": "string",
+      "defaultValue": "/hei-eud-prod-dataflow/StoreTermOpcos.json"
+    },
+    "paramStorageAccountName": {
+      "type": "string",
+      "defaultValue": "heieudweustrprod01"
+    },
+    "azureblob-3_name": {
+      "type": "string",
+      "defaultValue": "azureblob-3"
+    },
+    "azureblob-3_displayName": {
+      "type": "string",
+      "defaultValue": "heieudweustrprod01"
+    },
+    "azureblob-3_accountName": {
+      "type": "string",
+      "defaultValue": "heieudweustrprod01",
+      "metadata": {
+        "description": "Name of the storage account the connector should use."
+      }
+    },
+    "azureblob-3_resourceGroupName": {
+      "type": "string",
+      "defaultValue": "HEICollabTestRG01"
+    },
+    "keyvault_name": {
+      "type": "string",
+      "defaultValue": "keyvault"
+    },
+    "keyvault_displayName": {
+      "type": "string",
+      "defaultValue": "SHANMS02@heiway.net"
+    },
+    "keyvault_vaultName": {
+      "type": "string",
+      "defaultValue": "DevOpsFindIT",
+      "metadata": {
+        "description": "Name of the vault"
+      }
+    },
+    "keyvault_token:clientId": {
+      "type": "string",
+      "defaultValue": null,
+      "metadata": {
+        "description": "Client (or Application) ID of the Azure Active Directory application."
+      }
+    },
+    "keyvault_token:clientSecret": {
+      "type": "securestring",
+      "defaultValue": null,
+      "metadata": {
+        "description": "Client secret of the Azure Active Directory application."
+      }
+    },
+    "keyvault_token:TenantId": {
+      "type": "string",
+      "defaultValue": "[subscription().tenantId]",
+      "metadata": {
+        "description": "The tenant ID for the Azure Active Directory application."
+      }
+    },
+    "keyvault_token:resourceUri": {
+      "type": "string",
+      "defaultValue": null,
+      "metadata": {
+        "description": "The resource you are requesting authorization to use, for instance https://vault.azure.net"
+      }
+    },
+    "keyvault_token:grantType": {
+      "type": "string",
+      "defaultValue": "code",
+      "allowedValues": [
+        "code",
+        "client_credentials"
+      ],
+      "metadata": {
+        "description": "Grant type"
+      }
+    },
+    "sharepointonline-1_name": {
+      "type": "string",
+      "defaultValue": "sharepointonline-1"
+    },
+    "sharepointonline-1_displayName": {
+      "type": "string",
+      "defaultValue": "SHANMS02@heiway.net"
+    },
+    "sharepointonline-1_token:TenantId": {
+      "type": "string",
+      "defaultValue": "[subscription().tenantId]",
+      "metadata": {
+        "description": "The tenant ID of for the Azure Active Directory application"
+      }
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Logic/workflows",
+      "apiVersion": "2016-06-01",
+      "name": "[parameters('logicAppName')]",
+      "location": "[parameters('logicAppLocation')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/connections', parameters('azureblob-3_name'))]",
+        "[resourceId('Microsoft.Web/connections', parameters('keyvault_name'))]",
+        "[resourceId('Microsoft.Web/connections', parameters('sharepointonline-1_name'))]"
+      ],
+      "properties": {
+        "definition": {
+          "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {
+            "$connections": {
+              "defaultValue": {},
+              "type": "Object"
+            },
+            "FindITBackUpListName": {
+              "defaultValue": "[parameters('paramFindITBackUpListName')]",
+              "type": "String"
+            },
+            "FindITListName": {
+              "defaultValue": "[parameters('paramFindITListName')]",
+              "type": "String"
+            },
+            "SiteUrl": {
+              "defaultValue": "[parameters('paramSiteUrl')]",
+              "type": "String"
+            },
+            "StorageAccountFileNames": {
+              "defaultValue": "[parameters('paramStorageAccountFileNames')]",
+              "type": "String"
+            },
+            "StorageAccountName": {
+              "defaultValue": "[parameters('paramStorageAccountName')]",
+              "type": "String"
+            }
+          },
+          "triggers": {
+            "Recurrence": {
+              "recurrence": {
+                "frequency": "[parameters('RecurrenceFrequency')]",
+                "interval": "[parameters('RecurrenceInterval')]"
+              },
+              "type": "Recurrence"
+            }
+          },
+          "actions": {
+            "Checking_whether_new_item_or_edit_item": {
+              "actions": {},
+              "runAfter": {
+                "IsProd_Parent": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "For_each": {
+                    "foreach": "@body('Validate_Item_from_FindIT-Backend_List')?['value']",
+                    "actions": {},
+                    "runAfter": {},
+                    "type": "Foreach"
+                  }
+                }
+              },
+              "expression": {
+                "and": [
+                  {
+                    "equals": [
+                      "@variables('Number of existing OPCO Members')",
+                      0
+                    ]
+                  }
+                ]
+              },
+              "type": "If"
+            },
+            "Condition": {
+              "actions": {
+                "Set_variable_2": {
+                  "runAfter": {},
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "OpcoRegion",
+                    "value": "888"
+                  }
+                }
+              },
+              "runAfter": {
+                "Initialize_variable_2": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "Set_variable_4": {
+                    "runAfter": {},
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "OpcoRegion",
+                      "value": "0"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "and": [
+                  {
+                    "contains": [
+                      "@variables('OpcoBody')",
+                      "{"
+                    ]
+                  }
+                ]
+              },
+              "type": "If"
+            },
+            "Declare_Variable_For_OpcoRegion": {
+              "runAfter": {
+                "Initialize_variable": [
+                  "Succeeded"
+                ]
+              },
+              "type": "InitializeVariable",
+              "inputs": {
+                "variables": [
+                  {
+                    "name": "OpcoRegion",
+                    "type": "string",
+                    "value": "0"
+                  }
+                ]
+              }
+            },
+            "Get_blob_content_(V2)": {
+              "runAfter": {
+                "Declare_Variable_For_OpcoRegion": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "[base64(parameters('Get_blob_content_(V2)-path'))]": "[parameters('Get_blob_content_(V2)-path')]"
+              },
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['azureblob']['connectionId']"
+                  }
+                },
+                "method": "get",
+                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(parameters('Blob')))}/files/@{encodeURIComponent(encodeURIComponent(parameters('StorageAccountFileNames')))}/content')]"
+              }
+            },
+            "Get_secret": {
+              "runAfter": {
+                "Validate_Item_from_FindIT-Backend_List": [
+                  "Succeeded"
+                ]
+              },
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['keyvault']['connectionId']"
+                  }
+                },
+                "method": "get",
+                "path": "/secrets/@{encodeURIComponent('StorageAccountName')}/value"
+              }
+            },
+            "Initialize_variable": {
+              "runAfter": {
+                "Terminate": [
+                  "Succeeded"
+                ]
+              },
+              "type": "InitializeVariable",
+              "inputs": {
+                "variables": [
+                  {
+                    "name": "Number of existing OPCO Members",
+                    "type": "integer",
+                    "value": "@length(body('Validate_Item_from_FindIT-Backend_List')?['value'])"
+                  }
+                ]
+              }
+            },
+            "Initialize_variable_2": {
+              "runAfter": {
+                "Get_blob_content_(V2)": [
+                  "Succeeded"
+                ]
+              },
+              "type": "InitializeVariable",
+              "inputs": {
+                "variables": [
+                  {
+                    "name": "OpcoBody",
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "Initialize_variable_3": {
+              "runAfter": {
+                "Get_secret": [
+                  "Succeeded"
+                ]
+              },
+              "type": "InitializeVariable",
+              "inputs": {
+                "variables": [
+                  {
+                    "name": "Storage Name From KeyValut",
+                    "type": "string",
+                    "value": "@body('Get_secret')?['value']"
+                  }
+                ]
+              }
+            },
+            "IsProd_Parent": {
+              "runAfter": {
+                "Condition": [
+                  "Succeeded"
+                ]
+              },
+              "type": "InitializeVariable",
+              "inputs": {
+                "variables": [
+                  {
+                    "name": "IsProdParent",
+                    "type": "integer",
+                    "value": 0
+                  }
+                ]
+              }
+            },
+            "Terminate": {
+              "runAfter": {
+                "Initialize_variable_3": [
+                  "Succeeded"
+                ]
+              },
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Succeeded"
+              }
+            },
+            "Validate_Item_from_FindIT-Backend_List": {
+              "runAfter": {},
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['sharepointonline']['connectionId']"
+                  }
+                },
+                "method": "get",
+                "path": "/datasets/@{encodeURIComponent(encodeURIComponent(parameters('SiteUrl')))}/tables/@{encodeURIComponent(encodeURIComponent(parameters('FindITBackUpListName')))}/items",
+                "queries": {
+                  "$filter": "ItemID eq '@{triggerBody()?['ID']}'",
+                  "$top": 1
+                }
+              }
+            }
+          },
+          "outputs": {}
+        },
+        "parameters": {
+          "$connections": {
+            "value": {
+              "azureblob": {
+                "id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',parameters('logicAppLocation'),'/managedApis/azureblob')]",
+                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('azureblob-3_name'))]",
+                "connectionName": "[parameters('azureblob-3_name')]"
+              },
+              "keyvault": {
+                "id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',parameters('logicAppLocation'),'/managedApis/keyvault')]",
+                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('keyvault_name'))]",
+                "connectionName": "[parameters('keyvault_name')]"
+              },
+              "sharepointonline": {
+                "id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',parameters('logicAppLocation'),'/managedApis/sharepointonline')]",
+                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('sharepointonline-1_name'))]",
+                "connectionName": "[parameters('sharepointonline-1_name')]"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Web/connections",
+      "apiVersion": "2016-06-01",
+      "location": "[parameters('logicAppLocation')]",
+      "name": "[parameters('sharepointonline-1_name')]",
+      "properties": {
+        "api": {
+          "id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',parameters('logicAppLocation'),'/managedApis/sharepointonline')]"
+        },
+        "displayName": "[parameters('sharepointonline-1_displayName')]",
+        "parameterValues": {
+          "token:TenantId": "[parameters('sharepointonline-1_token:TenantId')]"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Web/connections",
+      "apiVersion": "2016-06-01",
+      "location": "[parameters('logicAppLocation')]",
+      "name": "[parameters('keyvault_name')]",
+      "properties": {
+        "api": {
+          "id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',parameters('logicAppLocation'),'/managedApis/keyvault')]"
+        },
+        "displayName": "[parameters('keyvault_displayName')]",
+        "parameterValues": {
+          "vaultName": "[parameters('keyvault_vaultName')]",
+          "token:clientId": "[parameters('keyvault_token:clientId')]",
+          "token:clientSecret": "[parameters('keyvault_token:clientSecret')]",
+          "token:TenantId": "[parameters('keyvault_token:TenantId')]",
+          "token:resourceUri": "[parameters('keyvault_token:resourceUri')]",
+          "token:grantType": "[parameters('keyvault_token:grantType')]"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Web/connections",
+      "apiVersion": "2016-06-01",
+      "location": "[parameters('logicAppLocation')]",
+      "name": "[parameters('azureblob-3_name')]",
+      "properties": {
+        "api": {
+          "id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',parameters('logicAppLocation'),'/managedApis/azureblob')]"
+        },
+        "displayName": "[parameters('azureblob-3_displayName')]",
+        "parameterValues": {
+          "accountName": "[parameters('azureblob-3_accountName')]",
+          "accessKey": "[listKeys(resourceId(parameters('azureblob-3_resourceGroupName'),'Microsoft.Storage/storageAccounts', parameters('azureblob-3_accountName')), '2018-02-01').keys[0].value]"
+        }
+      }
+    }
+  ],
+  "outputs": {}
+}
