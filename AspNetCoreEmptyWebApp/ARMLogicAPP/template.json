@@ -98,7 +98,7 @@
         "description": "Location of the Logic App."
       }
     },
-    "Get_blob_content_(V2)-path": {
+    "Get_blob_content-path": {
       "type": "string",
       "defaultValue": "%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json"
     },
@@ -106,41 +106,25 @@
       "type": "string",
       "defaultValue": "'"
     },
-    "RecurrenceFrequency": {
+    "Get_blob_content_2-path": {
       "type": "string",
-      "defaultValue": "Week"
+      "defaultValue": "%2fhei-eud-test-data%2fTermStore_Products.json"
     },
-    "RecurrenceInterval": {
+    "When_an_item_is_created_or_modified_in_FindITFrequency": {
+      "type": "string",
+      "defaultValue": "Minute"
+    },
+    "When_an_item_is_created_or_modified_in_FindITInterval": {
       "type": "int",
-      "defaultValue": 3
-    },
-    "paramFindITBackUpListName": {
-      "type": "string",
-      "defaultValue": "FindIT-Backend"
-    },
-    "paramFindITListName": {
-      "type": "string",
-      "defaultValue": "FindIT"
-    },
-    "paramSiteUrl": {
-      "type": "string",
-      "defaultValue": "https://heiway.sharepoint.com/sites/Collaborationportal"
-    },
-    "paramStorageAccountFileNames": {
-      "type": "string",
-      "defaultValue": "/hei-eud-prod-dataflow/StoreTermOpcos.json"
-    },
-    "paramStorageAccountName": {
-      "type": "string",
-      "defaultValue": "storageaccountheicobc4f"
+      "defaultValue": 1
     },
     "azureblob-3_name": {
       "type": "string",
-      "defaultValue": "hei-eud-prod-dataflow"
+      "defaultValue": "azureblob-3"
     },
     "azureblob-3_displayName": {
       "type": "string",
-      "defaultValue": "hei-eud-prod-dataflow displayName"
+      "defaultValue": "storageaccountheicobc4f"
     },
     "azureblob-3_accountName": {
       "type": "string",
@@ -177,8 +161,8 @@
       "name": "[parameters('logicAppName')]",
       "location": "[parameters('logicAppLocation')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/connections', parameters('sharepointonline-1_name'))]",
-		        "[resourceId('Microsoft.Web/connections', parameters('azureblob-3_name'))]"
+        "[resourceId('Microsoft.Web/connections', parameters('azureblob-3_name'))]",
+        "[resourceId('Microsoft.Web/connections', parameters('sharepointonline-1_name'))]"
       ],
       "properties": {
         "definition": {
@@ -188,35 +172,25 @@
             "$connections": {
               "defaultValue": {},
               "type": "Object"
-            },
-            "FindITBackUpListName": {
-              "defaultValue": "[parameters('paramFindITBackUpListName')]",
-              "type": "String"
-            },
-            "FindITListName": {
-              "defaultValue": "[parameters('paramFindITListName')]",
-              "type": "String"
-            },
-            "SiteUrl": {
-              "defaultValue": "[parameters('paramSiteUrl')]",
-              "type": "String"
-            },
-            "StorageAccountFileNames": {
-              "defaultValue": "[parameters('paramStorageAccountFileNames')]",
-              "type": "String"
-            },
-            "StorageAccountName": {
-              "defaultValue": "[parameters('paramStorageAccountName')]",
-              "type": "String"
             }
           },
           "triggers": {
-            "Recurrence": {
+            "When_an_item_is_created_or_modified_in_FindIT": {
               "recurrence": {
-                "frequency": "[parameters('RecurrenceFrequency')]",
-                "interval": "[parameters('RecurrenceInterval')]"
+                "frequency": "[parameters('When_an_item_is_created_or_modified_in_FindITFrequency')]",
+                "interval": "[parameters('When_an_item_is_created_or_modified_in_FindITInterval')]"
               },
-              "type": "Recurrence"
+              "splitOn": "@triggerBody()?['value']",
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['sharepointonline']['connectionId']"
+                  }
+                },
+                "method": "get",
+                "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://heiway.sharepoint.com/sites/Collaborationportal'))}/tables/@{encodeURIComponent(encodeURIComponent('f80c17f0-ea36-48d2-84f4-34532e99dfd6'))}/onnewitems"
+              }
             }
           },
           "actions": {
@@ -249,6 +223,24 @@
               },
               "type": "If"
             },
+            "Compose": {
+              "runAfter": {
+                "Get_blob_content": [
+                  "Succeeded"
+                ]
+              },
+              "type": "Compose",
+              "inputs": "@json(body('Get_blob_content'))"
+            },
+            "Compose_2": {
+              "runAfter": {
+                "Get_blob_content_2": [
+                  "Succeeded"
+                ]
+              },
+              "type": "Compose",
+              "inputs": "@json(body('Get_blob_content_2'))"
+            },
             "Condition": {
               "actions": {
                 "Set_variable_2": {
@@ -256,7 +248,7 @@
                   "type": "SetVariable",
                   "inputs": {
                     "name": "OpcoRegion",
-                    "value": "888"
+                    "value": "@{body('Filter_array')[0]['Region']}"
                   }
                 }
               },
@@ -306,24 +298,74 @@
                 ]
               }
             },
-            "Get_blob_content_(V2)": {
+            "Filter_array": {
+              "runAfter": {
+                "Compose": [
+                  "Succeeded"
+                ]
+              },
+              "type": "Query",
+              "inputs": {
+                "from": "@outputs('Compose')",
+                "where": "@equals(item()?['Name'], triggerBody()?['OpCo']?['Label'])"
+              }
+            },
+            "Filter_array_2": {
+              "runAfter": {
+                "Compose_2": [
+                  "Succeeded"
+                ]
+              },
+              "type": "Query",
+              "inputs": {
+                "from": "@outputs('Compose_2')",
+                "where": "@equals(item()?['ParentName'], triggerBody()?['SubProduct']?['Label'])"
+              }
+            },
+            "Get_blob_content": {
               "runAfter": {
                 "Declare_Variable_For_OpcoRegion": [
                   "Succeeded"
                 ]
               },
               "metadata": {
-                "[base64(parameters('Get_blob_content_(V2)-path'))]": "[parameters('Get_blob_content_(V2)-path')]"
+                "[base64(parameters('Get_blob_content-path'))]": "[parameters('Get_blob_content-path')]"
               },
               "type": "ApiConnection",
               "inputs": {
                 "host": {
                   "connection": {
-                    "name": "@parameters('$connections')['azureblob']['connectionId']"
+                    "name": "@parameters('$connections')['azureblob_1']['connectionId']"
                   }
                 },
                 "method": "get",
-                "path": "#{[concat('/v2/datasets/',uriComponent(uriComponent(parameters('Blob'))),'/files/',uriComponent(uriComponent(parameters('StorageAccountFileNames'))),'/content')]}#"
+                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent('heieudweustrprod01'))}/files/@{encodeURIComponent(encodeURIComponent(', parameters('__apostrophe'), base64(parameters('Get_blob_content-path')), parameters('__apostrophe'), '))}/content')]",
+                "queries": {
+                  "inferContentType": false
+                }
+              }
+            },
+            "Get_blob_content_2": {
+              "runAfter": {
+                "Condition": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "[base64(parameters('Get_blob_content_2-path'))]": "[parameters('Get_blob_content_2-path')]"
+              },
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['azureblob_1']['connectionId']"
+                  }
+                },
+                "method": "get",
+                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent('heieudweustrprod01'))}/files/@{encodeURIComponent(encodeURIComponent(', parameters('__apostrophe'), base64(parameters('Get_blob_content_2-path')), parameters('__apostrophe'), '))}/content')]",
+                "queries": {
+                  "inferContentType": false
+                }
               }
             },
             "Initialize_variable": {
@@ -345,7 +387,7 @@
             },
             "Initialize_variable_2": {
               "runAfter": {
-                "Get_blob_content_(V2)": [
+                "Filter_array": [
                   "Succeeded"
                 ]
               },
@@ -354,14 +396,15 @@
                 "variables": [
                   {
                     "name": "OpcoBody",
-                    "type": "string"
+                    "type": "string",
+                    "value": "@{body('Filter_array')}"
                   }
                 ]
               }
             },
             "IsProd_Parent": {
               "runAfter": {
-                "Condition": [
+                "Filter_array_2": [
                   "Succeeded"
                 ]
               },
@@ -371,7 +414,7 @@
                   {
                     "name": "IsProdParent",
                     "type": "integer",
-                    "value": 0
+                    "value": "@length(body('Filter_array_2'))"
                   }
                 ]
               }
@@ -386,7 +429,7 @@
                   }
                 },
                 "method": "get",
-                "path": "/datasets/@{encodeURIComponent(encodeURIComponent(parameters('SiteUrl')))}/tables/@{encodeURIComponent(encodeURIComponent(parameters('FindITBackUpListName')))}/items",
+                "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://heiway.sharepoint.com/sites/Collaborationportal'))}/tables/@{encodeURIComponent(encodeURIComponent('5abcb5f4-2544-4c0b-8b07-dfc5eb46e1c1'))}/items",
                 "queries": {
                   "$filter": "ItemID eq '@{triggerBody()?['ID']}'",
                   "$top": 1
@@ -399,7 +442,7 @@
         "parameters": {
           "$connections": {
             "value": {
-              "azureblob": {
+              "azureblob_1": {
                 "id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',parameters('logicAppLocation'),'/managedApis/azureblob')]",
                 "connectionId": "[resourceId('Microsoft.Web/connections', parameters('azureblob-3_name'))]",
                 "connectionName": "[parameters('azureblob-3_name')]"
