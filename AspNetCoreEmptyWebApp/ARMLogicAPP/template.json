@@ -362,7 +362,7 @@
                   }
                 },
                 "method": "get",
-                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent('heieudweustrprod01'))}/files/@{encodeURIComponent(encodeURIComponent(', parameters('__apostrophe'), base64(parameters('Get_blob_content_2-path')), parameters('__apostrophe'), '))}/content')]",
+                "path": "[concat('/v2/datasets/',uriComponent(uriComponent('heieudweustrprod01')),'/files/',uriComponent(uriComponent('parameters('__apostrophe'), base64(parameters('Get_blob_content_2-path')), parameters('__apostrophe') ')),'/content')]",
                 "queries": {
                   "inferContentType": false
                 }
