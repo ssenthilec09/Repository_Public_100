@@ -362,7 +362,7 @@
                   }
                 },
                 "method": "get",
-                "path": "#{[concat('/v2/datasets/',uriComponent(uriComponent(parameters('Blob'))),'/files/',uriComponent(uriComponent(parameters('StorageAccountFileNames'))),'/content')]}#"
+                "path": "#{[concat('/v2/datasets/',uriComponent(uriComponent(parameters('Blob'))),'/files/',uriComponent(uriComponent(parameters('StorageAccountFileNames'))),'/content')]}#",
                 "queries": {
                   "inferContentType": false
                 }
