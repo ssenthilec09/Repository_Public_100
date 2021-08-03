@@ -136,11 +136,11 @@
     },
     "azureblob-3_name": {
       "type": "string",
-      "defaultValue": "azureblob-4"
+      "defaultValue": "hei-eud-prod-dataflow"
     },
     "azureblob-3_displayName": {
       "type": "string",
-      "defaultValue": "storageaccountheicobc4f"
+      "defaultValue": "hei-eud-prod-dataflow displayName"
     },
     "azureblob-3_accountName": {
       "type": "string",
