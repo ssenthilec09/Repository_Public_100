@@ -98,13 +98,33 @@
         "description": "Location of the Logic App."
       }
     },
+    "FindIT-Member-Create-ResourceGroup": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().name]"
+    },
+    "FindIT-Member-Create-FunctionApp": {
+      "type": "string",
+      "defaultValue": "DevHEIGISMOAL"
+    },
+    "FindIT-Member-Create-FunctionName": {
+      "type": "string",
+      "defaultValue": "FindIT-Member-Create"
+    },
+    "FindIT-Member-Update-ResourceGroup": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().name]"
+    },
+    "FindIT-Member-Update-FunctionApp": {
+      "type": "string",
+      "defaultValue": "DevHEIGISMOAL"
+    },
+    "FindIT-Member-Update-FunctionName": {
+      "type": "string",
+      "defaultValue": "FindIT-Member-Update"
+    },
     "Get_blob_content-path": {
       "type": "string",
       "defaultValue": "%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json"
-    },
-	"paramSiteUrl": {
-      "type": "string",
-      "defaultValue": "https://heiway.sharepoint.com/sites/Collaborationportal"
     },
     "__apostrophe": {
       "type": "string",
@@ -199,7 +219,24 @@
           },
           "actions": {
             "Checking_whether_new_item_or_edit_item": {
-              "actions": {},
+              "actions": {
+                "FindIT-Member-Create": {
+                  "runAfter": {},
+                  "type": "Function",
+                  "inputs": {
+                    "body": {
+                      "IsProdParent": "@variables('IsProdParent')",
+                      "MemberName": "@triggerBody()?['Name']",
+                      "OPCO": "@triggerBody()?['OpCo']?['Value']",
+                      "OpcoRegion": "@variables('OpcoRegion')",
+                      "Product": "@triggerBody()?['SubProduct']?['Value']"
+                    },
+                    "function": {
+                      "id": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',parameters('FindIT-Member-Create-ResourceGroup'),'/providers/Microsoft.Web/sites/',parameters('FindIT-Member-Create-FunctionApp'),'/functions/',parameters('FindIT-Member-Create-FunctionName'))]"
+                    }
+                  }
+                }
+              },
               "runAfter": {
                 "IsProd_Parent": [
                   "Succeeded"
@@ -209,7 +246,28 @@
                 "actions": {
                   "For_each": {
                     "foreach": "@body('Validate_Item_from_FindIT-Backend_List')?['value']",
-                    "actions": {},
+                    "actions": {
+                      "FindIT-Member-Update": {
+                        "runAfter": {},
+                        "type": "Function",
+                        "inputs": {
+                          "body": {
+                            "IsPrevProdParent": "@items('For_each')?['IsPrevSubProductParent']",
+                            "IsProdParent": "@variables('IsProdParent')",
+                            "NewName": "@triggerBody()?['Name']",
+                            "NewOPCO": "@triggerBody()?['OpCo']?['Value']",
+                            "NewProd": "@triggerBody()?['SubProduct']?['Value']",
+                            "OldName": "@items('For_each')?['Name']",
+                            "OldOPCO": "@items('For_each')?['OpCo']?['Value']",
+                            "OldProd": "@items('For_each')?['SubProduct']?['Value']",
+                            "OpcoRegion": "@variables('OpcoRegion')"
+                          },
+                          "function": {
+                            "id": "[concat('/subscriptions/',subscription().subscriptionId,'/resourceGroups/',parameters('FindIT-Member-Update-ResourceGroup'),'/providers/Microsoft.Web/sites/',parameters('FindIT-Member-Update-FunctionApp'),'/functions/',parameters('FindIT-Member-Update-FunctionName'))]"
+                          }
+                        }
+                      }
+                    },
                     "runAfter": {},
                     "type": "Foreach"
                   }
@@ -343,7 +401,7 @@
                   }
                 },
                 "method": "get",
-				"path": "#{[concat('/v2/datasets/',uriComponent(uriComponent(parameters('storageaccountheicobc4f'))),'/files/',uriComponent(uriComponent(parameters('Get_blob_content-path'))),'/content')]}#",
+                "path": "#{[concat('/v2/datasets/',uriComponent(uriComponent(parameters('storageaccountheicobc4f'))),'/files/',uriComponent(uriComponent(parameters('Get_blob_content-path'))),'/content')]}#",
                 "queries": {
                   "inferContentType": false
                 }
@@ -366,7 +424,7 @@
                   }
                 },
                 "method": "get",
-                "path": "#{[concat('/v2/datasets/',uriComponent(uriComponent(parameters('Blob'))),'/files/',uriComponent(uriComponent(parameters('StorageAccountFileNames'))),'/content')]}#",
+				"path": "#{[concat('/v2/datasets/',uriComponent(uriComponent(parameters('storageaccountheicobc4f'))),'/files/',uriComponent(uriComponent(parameters('Get_blob_content_2-path'))),'/content')]}#",
                 "queries": {
                   "inferContentType": false
                 }
