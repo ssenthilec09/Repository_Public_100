@@ -4,6 +4,7 @@
   "parameters": {
     "logicAppName": {
       "type": "string",
+      "defaultValue": "FindIT-OPCOMember-CU-DevOps456",
       "metadata": {
         "description": "Name of the Logic App."
       }
@@ -144,14 +145,6 @@
     "When_an_item_is_created_or_modified_in_FindITInterval": {
       "type": "int",
       "defaultValue": 1
-    },
-	"paramFindITBackUpListName": {
-	  "type": "string",
-      "defaultValue": "FindIT-Backend"
-    },
-    "paramFindITListName": {
-	  "type": "string",	
-      "defaultValue": "FindIT"
     },
     "azureblob-3_name": {
       "type": "string",
