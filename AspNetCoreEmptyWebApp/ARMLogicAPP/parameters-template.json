@@ -2,8 +2,8 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "logicAppName1": {
-      "value": "#{FindIT-OPCOMember-CU-DevOps123}#"
+    "logicAppName": {
+      "value": "{FindIT-OPCOMember-CU-DevOps123}"
     },
     "logicAppLocation": {
       "value": "westeurope"
