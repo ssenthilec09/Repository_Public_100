@@ -98,6 +98,10 @@
         "description": "Location of the Logic App."
       }
     },
+	"When_an_item_is_created_or_modified_in_FindITFrequency": {
+      "type": "string",
+      "defaultValue": "Minute"
+    },
     "FindIT-Member-Create-ResourceGroup": {
       "type": "string",
       "defaultValue": "[resourceGroup().name]"
@@ -134,14 +138,20 @@
       "type": "string",
       "defaultValue": "%2fhei-eud-test-data%2fTermStore_Products.json"
     },
-    "When_an_item_is_created_or_modified_in_FindITFrequency": {
+    "paramSiteUrl": {
       "type": "string",
-      "defaultValue": "Minute"
+      "defaultValue": "https://heiway.sharepoint.com/sites/Collaborationportal"
     },
     "When_an_item_is_created_or_modified_in_FindITInterval": {
       "type": "int",
       "defaultValue": 1
     },
+	"paramFindITBackUpListName": {
+      "value": "FindIT-Backend"
+    },
+    "paramFindITListName": {
+      "value": "FindIT"
+    }
     "azureblob-3_name": {
       "type": "string",
       "defaultValue": "azureblob-3"
