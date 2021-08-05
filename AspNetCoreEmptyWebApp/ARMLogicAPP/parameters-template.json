@@ -3,10 +3,13 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "logicAppName": {
-      "value": "FindIT-OPCOMember-CU-DevOps456"
+      "value": "#{FindIT-OPCOMember-CU-DevOps45678}#"
     },
     "logicAppLocation": {
       "value": "westeurope"
+    },
+    "When_an_item_is_created_or_modified_in_FindITFrequency": {
+      "value": "Minute"
     },
     "FindIT-Member-Create-FunctionApp": {
       "value": "DevHEIGISMOAL"
@@ -29,11 +32,17 @@
     "Get_blob_content_2-path": {
       "value": "%2fhei-eud-test-data%2fTermStore_Products.json"
     },
-    "When_an_item_is_created_or_modified_in_FindITFrequency": {
-      "value": "Minute"
+    "paramSiteUrl": {
+      "value": "https://heiway.sharepoint.com/sites/Collaborationportal"
     },
     "When_an_item_is_created_or_modified_in_FindITInterval": {
       "value": 1
+    },
+    "paramFindITBackUpListName": {
+      "value": "FindIT-Backend"
+    },
+    "paramFindITListName": {
+      "value": "FindIT"
     },
     "azureblob-3_name": {
       "value": "azureblob-3"
