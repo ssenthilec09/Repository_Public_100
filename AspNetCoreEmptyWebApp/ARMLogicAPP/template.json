@@ -4,7 +4,6 @@
   "parameters": {
     "logicAppName": {
       "type": "string",
-      "defaultValue": "FindIT-OPCOMember-CU-DevOps456",
       "metadata": {
         "description": "Name of the Logic App."
       }
