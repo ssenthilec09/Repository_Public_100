@@ -147,9 +147,11 @@
       "defaultValue": 1
     },
 	"paramFindITBackUpListName": {
+	  "type": "string",
       "value": "FindIT-Backend"
     },
     "paramFindITListName": {
+	  "type": "string",	
       "value": "FindIT"
     },
     "azureblob-3_name": {
