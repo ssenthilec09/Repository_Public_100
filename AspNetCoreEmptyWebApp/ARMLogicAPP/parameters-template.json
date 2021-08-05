@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "logicAppName": {
-      "value": "FindIT-OPCOMember-CU-DevOps123"
+      "value": "#{FindIT-OPCOMember-CU-DevOps123}#"
     },
     "logicAppLocation": {
       "value": "westeurope"
