@@ -147,8 +147,7 @@
       }
     },
     "azureblob-3_resourceGroupName": {
-      "type": "string",
-      "defaultValue": "HEICollabTestRG01"
+      "type": "string"
     },
     "sharepointonline-1_name": {
       "type": "string"
