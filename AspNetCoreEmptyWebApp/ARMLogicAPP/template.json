@@ -157,7 +157,6 @@
     },
     "sharepointonline-1_token:TenantId": {
       "type": "string",
-      "defaultValue": "[subscription().tenantId]",
       "metadata": {
         "description": "The tenant ID of for the Azure Active Directory application"
       }
