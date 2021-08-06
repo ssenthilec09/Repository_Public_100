@@ -142,7 +142,6 @@
     },
     "azureblob-3_accountName": {
       "type": "string",
-      "defaultValue": "storageaccountheicobc4f",
       "metadata": {
         "description": "Name of the storage account the connector should use."
       }
