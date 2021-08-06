@@ -128,7 +128,8 @@
       "type": "string"
     },
     "paramSiteUrl": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "https://heiway.sharepoint.com/sites/Collaborationportal"
     },
     "When_an_item_is_created_or_modified_in_FindITInterval": {
       "type": "int",
@@ -141,19 +142,23 @@
       "type": "string"
     },
     "azureblob-3_accountName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "storageaccountheicobc4f",
       "metadata": {
         "description": "Name of the storage account the connector should use."
       }
     },
     "azureblob-3_resourceGroupName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "HEICollabTestRG01"
     },
     "sharepointonline-1_name": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "sharepointonline-3"
     },
     "sharepointonline-1_displayName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "SHANMS02@heiway.net"
     },
     "sharepointonline-1_token:TenantId": {
       "type": "string",
