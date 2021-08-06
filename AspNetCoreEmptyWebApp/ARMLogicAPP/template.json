@@ -4,12 +4,14 @@
   "parameters": {
     "logicAppName": {
       "type": "string",
+	  "defaultValue":"",
       "metadata": {
         "description": "Name of the Logic App."
       }
     },
     "logicAppLocation": {
       "type": "string",
+	  "defaultValue":"",
       "allowedValues": [
         "[resourceGroup().location]",
         "asia",
