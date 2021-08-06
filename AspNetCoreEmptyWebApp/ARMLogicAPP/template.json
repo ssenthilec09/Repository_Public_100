@@ -128,8 +128,7 @@
       "type": "string"
     },
     "paramSiteUrl": {
-      "type": "string",
-      "defaultValue": "https://heiway.sharepoint.com/sites/Collaborationportal"
+      "type": "string"
     },
     "When_an_item_is_created_or_modified_in_FindITInterval": {
       "type": "int",
