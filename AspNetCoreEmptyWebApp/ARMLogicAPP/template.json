@@ -4,14 +4,14 @@
   "parameters": {
     "logicAppName": {
       "type": "string",
-	  "defaultValue":"",
+      "defaultValue": "FindIT-OPCOMember-CU-DevOps123",
       "metadata": {
         "description": "Name of the Logic App."
       }
     },
     "logicAppLocation": {
       "type": "string",
-	  "defaultValue":"",
+      "defaultValue": "westeurope",
       "allowedValues": [
         "[resourceGroup().location]",
         "asia",
@@ -107,20 +107,24 @@
       "defaultValue": "[resourceGroup().name]"
     },
     "FindIT-Member-Create-FunctionApp": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "DevHEIGISMOAL"
     },
     "FindIT-Member-Create-FunctionName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "FindIT-Member-Create"
     },
     "FindIT-Member-Update-ResourceGroup": {
       "type": "string",
       "defaultValue": "[resourceGroup().name]"
     },
     "FindIT-Member-Update-FunctionApp": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "DevHEIGISMOAL"
     },
     "FindIT-Member-Update-FunctionName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "FindIT-Member-Update"
     },
     "Get_blob_content-path": {
       "type": "string",
