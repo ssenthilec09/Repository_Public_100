@@ -20,38 +20,47 @@
     "FindIT-Member-Update-FunctionName": {
       "value": "#{FindIT-Member-Update-FunctionName}#"
     },
+	"FindIT-Member-Create-ResourceGroup": {
+      "value": "#{FindIT-Member-Create-ResourceGroup}#"
+    },
+	"FindIT-Member-Update-ResourceGroup": {
+      "value": "#{FindIT-Member-Update-ResourceGroup}#"
+    },
     "Get_blob_content-path": {
-      "value": "%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json"
+	  "value": "#{Get_blob_content-path}#"
     },
     "__apostrophe": {
       "value": "'"
     },
     "Get_blob_content_2-path": {
-      "value": "%2fhei-eud-test-data%2fTermStore_Products.json"
+	  "value": "#{Get_blob_content_2-path}#"
     },
     "When_an_item_is_created_or_modified_in_FindITFrequency": {
-      "value": "Minute"
+      "value": "#{When_an_item_is_created_or_modified_in_FindITFrequency}#"
     },
     "When_an_item_is_created_or_modified_in_FindITInterval": {
       "value": 1
     },
+	"paramSiteUrl": {
+	  "value": "#{paramSiteUrl}#"
+    },
     "azureblob-3_name": {
-      "value": "azureblob-3"
+	  "value": "#{azureblob-3_name}#"
     },
     "azureblob-3_displayName": {
-      "value": "storageaccountheicobc4f"
+	  "value": "#{azureblob-3_displayName}#"
     },
     "azureblob-3_accountName": {
-      "value": "storageaccountheicobc4f"
+	  "value": "#{azureblob-3_accountName}#"
     },
     "azureblob-3_resourceGroupName": {
-      "value": "HEICollabTestRG01"
+	  "value": "#{azureblob-3_resourceGroupName}#"
     },
     "sharepointonline-1_name": {
-      "value": "sharepointonline-3"
+	  "value": "#{sharepointonline-1_name}#"
     },
     "sharepointonline-1_displayName": {
-      "value": "SHANMS02@heiway.net"
+      "value": "#{sharepointonline-1_displayName}#"
     }
   }
 }

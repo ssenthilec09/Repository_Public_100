@@ -97,12 +97,10 @@
       }
     },
 	"When_an_item_is_created_or_modified_in_FindITFrequency": {
-      "type": "string",
-      "defaultValue": "Minute"
+      "type": "string"
     },
     "FindIT-Member-Create-ResourceGroup": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().name]"
+      "type": "string"
     },
     "FindIT-Member-Create-FunctionApp": {
       "type": "string"
@@ -111,8 +109,7 @@
       "type": "string"
     },
     "FindIT-Member-Update-ResourceGroup": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().name]"
+      "type": "string"
     },
     "FindIT-Member-Update-FunctionApp": {
       "type": "string"
@@ -121,51 +118,42 @@
       "type": "string"
     },
     "Get_blob_content-path": {
-      "type": "string",
-      "defaultValue": "%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json"
+      "type": "string"
     },
     "__apostrophe": {
       "type": "string",
       "defaultValue": "'"
     },
     "Get_blob_content_2-path": {
-      "type": "string",
-      "defaultValue": "%2fhei-eud-test-data%2fTermStore_Products.json"
+      "type": "string"
     },
     "paramSiteUrl": {
-      "type": "string",
-      "defaultValue": "https://heiway.sharepoint.com/sites/Collaborationportal"
+      "type": "string"
     },
     "When_an_item_is_created_or_modified_in_FindITInterval": {
       "type": "int",
       "defaultValue": 1
     },
     "azureblob-3_name": {
-      "type": "string",
-      "defaultValue": "azureblob-3"
+      "type": "string"
     },
     "azureblob-3_displayName": {
-      "type": "string",
-      "defaultValue": "storageaccountheicobc4f"
+      "type": "string"
     },
     "azureblob-3_accountName": {
-      "type": "string",
-      "defaultValue": "storageaccountheicobc4f",
+      "type": "string"
       "metadata": {
         "description": "Name of the storage account the connector should use."
       }
     },
     "azureblob-3_resourceGroupName": {
-      "type": "string",
-      "defaultValue": "HEICollabTestRG01"
+      "type": "string"
     },
     "sharepointonline-1_name": {
-      "type": "string",
-      "defaultValue": "sharepointonline-3"
+      "type": "string"
     },
     "sharepointonline-1_displayName": {
-      "type": "string",
-      "defaultValue": "SHANMS02@heiway.net"
+      "type": "string"
     },
     "sharepointonline-1_token:TenantId": {
       "type": "string",
