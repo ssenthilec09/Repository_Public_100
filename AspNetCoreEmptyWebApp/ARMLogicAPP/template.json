@@ -139,8 +139,7 @@
       "defaultValue": "azureblob-3"
     },
     "azureblob-3_displayName": {
-      "type": "string",
-      "defaultValue": "storageaccountheicobc4f"
+      "type": "string"
     },
     "azureblob-3_accountName": {
       "type": "string",
