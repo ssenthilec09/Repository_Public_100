@@ -153,8 +153,7 @@
       "defaultValue": "HEICollabTestRG01"
     },
     "sharepointonline-1_name": {
-      "type": "string",
-      "defaultValue": "sharepointonline-3"
+      "type": "string"
     },
     "sharepointonline-1_displayName": {
       "type": "string"
