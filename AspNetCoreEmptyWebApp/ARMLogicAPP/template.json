@@ -128,7 +128,8 @@
       "type": "string"
     },
     "paramSiteUrl": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "https://heiway.sharepoint.com/sites/Collaborationportal"
     },
     "When_an_item_is_created_or_modified_in_FindITInterval": {
       "type": "int",
@@ -151,7 +152,8 @@
       "defaultValue": "HEICollabTestRG01"
     },
     "sharepointonline-1_name": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "sharepointonline-3"
     },
     "sharepointonline-1_displayName": {
       "type": "string"
