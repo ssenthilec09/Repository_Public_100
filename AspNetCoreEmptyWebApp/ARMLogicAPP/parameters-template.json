@@ -6,19 +6,19 @@
       "value": "#{logicAppName}#"
     },
     "logicAppLocation": {
-      "value": "westeurope"
+      "value": "#{logicAppLocation}#"
     },
     "FindIT-Member-Create-FunctionApp": {
-      "value": "DevHEIGISMOAL"
+      "value": "#{FindIT-Member-Create-FunctionApp}#"
     },
     "FindIT-Member-Create-FunctionName": {
-      "value": "FindIT-Member-Create"
+      "value": "#{FindIT-Member-Create-FunctionName}#"
     },
     "FindIT-Member-Update-FunctionApp": {
-      "value": "DevHEIGISMOAL"
+      "value": "#{FindIT-Member-Update-FunctionApp}#"
     },
     "FindIT-Member-Update-FunctionName": {
-      "value": "FindIT-Member-Update"
+      "value": "#{FindIT-Member-Update-FunctionName}#"
     },
     "Get_blob_content-path": {
       "value": "%2fhei-eud-prod-dataflow%2fStoreTermOpcos.json"
