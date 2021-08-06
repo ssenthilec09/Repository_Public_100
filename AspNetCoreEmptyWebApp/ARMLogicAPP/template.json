@@ -135,8 +135,7 @@
       "defaultValue": 1
     },
     "azureblob-3_name": {
-      "type": "string",
-      "defaultValue": "azureblob-3"
+      "type": "string"
     },
     "azureblob-3_displayName": {
       "type": "string"
